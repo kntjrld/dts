@@ -62,7 +62,7 @@
        
         <div class="guest-viewing">
         <p class="or">or</p>
-            <p><a href="/guest-view">Continue as Guest</a></p>
+            <p><a href="guestview.php">Continue as Guest</a></p>
         </div>
     </div>
     </div>
