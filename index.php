@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DepED Document Tracking System</title>
-        <!-- default.css -->
-        <link rel="stylesheet" href="css/default.css">
-        <!-- index.css -->
+    <!-- default.css -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- index.css -->
     <link rel="stylesheet" href="css/index.css">
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- swalfire -->
+    <link rel="stylesheet" href="css/swalfire.css">
+    <!-- default css -->
+    <link rel="stylesheet" href="css/default.css">
 </head>
 
 <body>
@@ -24,10 +30,10 @@
         </div>
         <div id="login-form" class="form">
             <h2>Login</h2>
-            <form>
-                <input type="username" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Log In</button>
+            <form id="loginForm" name="loginForm" method="POST">
+                <input type="username" name="username" id="username" placeholder="Username" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <button type="submit" class="login" id="login">Log In</button>
             </form>
         </div>
 
@@ -70,6 +76,10 @@
     //footer
     document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jquery login -->
+    <script src="js/login.js"></script>
 </body>
 
 </html>

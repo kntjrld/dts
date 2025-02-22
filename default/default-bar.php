@@ -9,7 +9,8 @@
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
         <span>John Doe</span>
-        <i class="fa-solid fa-user"></i>
+        <!-- <i class="fa-solid fa-user"></i> -->
+        <img src="media/user.png" alt="User">
         <i class="fa-solid fa-chevron-down"></i>
     </div>
 </header>

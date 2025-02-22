@@ -1,7 +1,6 @@
 /* Default body, font styles , etc*/
 body{
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     line-height: 1.5;
     color: #333;
     background-color: #f4f4f4;
@@ -23,7 +22,7 @@ body{
     z-index: 1000;
     /* header line */
     border-bottom: 1px solid #ddd;
-    font-weight: 200;
+    font-weight: 300;
   }
   
   /* Hamburger menu */
@@ -39,6 +38,7 @@ body{
   /* Space between menu and span */
   .hamburger-menu span {
     margin-left: 10px;
+    font-weight: bold;
   }
   
   /* User settings */
@@ -47,14 +47,29 @@ body{
     align-items: center;
   }
   
-  .user-settings i{
+  .user-settings{
     color: #333;
     padding: 5px;
     /* size */
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
   }
   
+  .user-settings i{
+    /* size */
+    font-size: 20px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  .user-settings img{
+    border-radius: 50%;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
   .user-avatar {
     border-radius: 50%;
     width: 40px;
@@ -71,15 +86,15 @@ body{
   .side-nav {
     position: absolute;
     left: -250px; /* Hidden by default */
-    top: 50px; /* Below the header */
     width: 250px;
-    height: calc(100% - 50px); /* Full height minus the header */
+    height: calc(100% - 50px);
+    height: 100%;
     background-color: #fff;
     transition: 0.3s;
-    padding-top: 20px;
     z-index: 999;
     /* Right line */
     border-right: 1px solid #ddd;
+    border-radius: 10px;
   }
   
   .side-nav.active {
@@ -99,6 +114,16 @@ body{
   .side-nav ul li a {
     color: #333;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 5px;
     display: block;
+  }
+
+  .side-nav i{
+    padding-right: 10px;
+  }
+  /* fa-bell */
+  .fa-bell {
+    position: relative;
+    margin-right: auto;
   }
