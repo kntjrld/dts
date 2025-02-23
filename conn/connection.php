@@ -17,6 +17,6 @@ try {
     $client->selectDatabase('admin')->command(['ping' => 1]);
     // echo "Pinged your deployment. You successfully connected to MongoDB!\n";
 } catch (Exception $e) {
-    printf($e->$getMessage);
+    printf($e->getMessage());
 }
 ?>
