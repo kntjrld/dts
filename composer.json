@@ -1,7 +1,6 @@
 {
   "require" : {
     "php": "^7.4 || ^8.0",
-    "ext-mongodb": "*",
     "php-di/php-di": "^7.0",
     "slim/slim": "^4.0",
     "php-di/slim-bridge": "^3.4.1",
@@ -12,7 +11,5 @@
     "mongodb/mongodb": "^1.20",
     "vlucas/phpdotenv": "^5.6"
   },
-  "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
-  }
+  "require-dev": {}
 }
