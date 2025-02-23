@@ -1,2 +1,2 @@
-conn\vendor
+vendor/
 .env
