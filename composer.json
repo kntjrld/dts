@@ -1,6 +1,6 @@
 {
   "require" : {
-    "php": "^7.4 || ^8.0",
+    "php": "8.2.4",
     "php-di/php-di": "^7.0",
     "slim/slim": "^4.0",
     "php-di/slim-bridge": "^3.4.1",
@@ -8,7 +8,7 @@
     "monolog/monolog": "^3.0",
     "twig/twig": "^3.0",
     "slim/twig-view": "^3.0",
-    "mongodb/mongodb": "^1.20",
+    "mongodb/mongodb": "1.20.1",
     "vlucas/phpdotenv": "^5.6"
   }
 }
