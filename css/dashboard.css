@@ -1,11 +1,3 @@
-/* Container for the layout */
-.content {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  height: 100vh;
-}
-
 /* Main Content Styles */
 .main-content {
   flex-grow: 1;

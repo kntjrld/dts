@@ -16,7 +16,7 @@ $(document).ready(function() {
                 if (response.status === "success") {
                     swal.fire({
                         title: "Login Successful",
-                        text: "Redirecting to Dashboard",
+                        // text: "Redirecting to Dashboard",
                         icon: "success",
                         timer: 2000
                         // showConfirmButton: false
