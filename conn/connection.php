@@ -1,6 +1,6 @@
 
 <?php
-require 'vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 $uri = 'mongodb+srv://dts_cluster:kHzNuZSPyD7fWbKD@dts.ovcm0.mongodb.net/?retryWrites=true&w=majority&appName=dts';
 
