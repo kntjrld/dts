@@ -1,8 +1,8 @@
 
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+require_once __DIR__ . "/../vendor/autoload.php";
 
-$uri = 'mongodb+srv://dts_cluster:kHzNuZSPyD7fWbKD@dts.ovcm0.mongodb.net/?retryWrites=true&w=majority&appName=dts';
+$uri = 'mongodb+srv://dts_cluster:kHzNuZSPyD7fWbKD@dts.ovcm0.mongodb.net/?ssl=true&retryWrites=true&w=majority&appName=dts&connectTimeoutMS=30000&socketTimeoutMS=30000';
 
 // Create a new client and connect to the server
 $client = new MongoDB\Client($uri);
