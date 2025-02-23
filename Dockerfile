@@ -12,4 +12,4 @@ COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
 #Restart Apache
-CMD ["apache2-foreground"]
+RUN service apache2 restart
