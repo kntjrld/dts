@@ -5,7 +5,7 @@ $(document).ready(function() {
         var username = $('#username').val();
         var password = $('#password').val();
         $.ajax({
-            url: 'conn/login.php',
+            url: 'conn/login',
             type: 'POST',
             data: {
                 username: username,
