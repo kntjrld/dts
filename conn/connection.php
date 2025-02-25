@@ -2,14 +2,14 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use Exception;
 use MongoDB\Client;
 use MongoDB\Driver\ServerApi;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
 $dotenv->load();
 $mongoDbPassword = $_ENV['MONGO_DB_PASSWORD'];
-$uri = "mongodb+srv://dts_cluster:$mongoDbPassword@dts.ovcm0.mongodb.net/retryWrites=true&w=majority&appName=dts&connectTimeoutMS=60000&socketTimeoutMS=60000";
+$mongoDbUserName = $_ENV['MONGO_DB_USERNAME'];
+$uri = "mongodb+srv://$mongoDbUserName:$mongoDbPassword@dts.ovcm0.mongodb.net/retryWrites=true&w=majority&appName=dts&connectTimeoutMS=60000&socketTimeoutMS=60000";
 
 // Specify Stable API version 1
 $apiVersion = new ServerApi(ServerApi::V1);
