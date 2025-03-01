@@ -53,3 +53,16 @@
   #searchInput:focus {
     font-family: "Sans-serif";
   }
+
+  /* btn-action */
+  .x-btn-action {
+   /* modern tale button */
+    background-color: #0a488a;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 12px;
+    border: none;
+  }
