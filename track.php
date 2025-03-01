@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="css/track.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -38,6 +37,10 @@
                 </div>
             </div>
             <div class="table-container">
+                <!-- h5 title -->
+                <dv class="x-title">
+                    <h5>Search Result</h5>
+                </dv>
                 <!-- Table -->
                 <table class="table table-striped">
                     <thead>

@@ -1,6 +1,6 @@
 #Error
 
-ErrorDocument 404 /i-OSCA/404.php
+ErrorDocument 404 /dts/404.php
 
 <ifModule mod_rewrite.c>
 

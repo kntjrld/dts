@@ -2,7 +2,7 @@
 <header class="top-header">
     <div class="hamburger-menu">
         <div class="toggle" onclick="toggleNav()">
-            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid"></i>
         </div>
         <span>DepED</span>
     </div>
@@ -19,7 +19,7 @@
 <nav class="side-nav" id="sideNav">
     <ul>
         <!-- dashboard -->
-        <li><a href="./dashboard"><i class="fa-solid fa-home"></i> Dashboard</a></li>
+        <li class="active"><a href="./dashboard"><i class="fa-solid fa-home"></i> Dashboard</a></li>
         <!-- create, track, incoming, outgoing, terminal docs, maintenance and user management -->
         <li><a href="./create"><i class="fa-solid fa-plus"></i> Create</a></li>
         <li><a href="./track"><i class="fa-solid fa-search"></i> Track</a></li>

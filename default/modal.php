@@ -1,11 +1,11 @@
 <!-- logout modal -->
-<div class="modal show" id="logoutModal">
-    <div class="modal-content">
-        <div class="modal-body">
+<div class="show" id="logoutModal-x">
+    <div class="modal-content-x">
+        <div class="modal-body-x">
             <div class="first-row">
                 <!-- arrow right -->
-                <i class="fa-solid fa-arrow-right" id="arrow-right"></i>
-                <p>Sign out</p>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p class="x-p">Sign out</p>
             </div>
         </div>
     </div>

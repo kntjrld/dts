@@ -11,6 +11,8 @@
     <title>Create Document</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- dashboard.css -->
     <link rel="stylesheet" href="css/create.css">
     <!-- default.css -->
