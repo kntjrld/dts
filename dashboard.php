@@ -21,6 +21,8 @@
 
 <body>
     <div id="default-container"></div>
+    <!-- modals -->
+    <div id="modal-container"></div>
     <div class="content">
         <!-- Dashboard for incoming, outgoing, terminal docs and total Docs -->
         <!-- Main Content -->

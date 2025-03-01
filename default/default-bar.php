@@ -1,3 +1,4 @@
+<?php include '../conn/session.php'; ?>
 <header class="top-header">
     <div class="hamburger-menu">
         <div class="toggle" onclick="toggleNav()">
@@ -8,19 +9,10 @@
     <div class="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
-        <span>John Doe</span>
+        <span><?php echo $_SESSION['fullname']?></span>
         <!-- <i class="fa-solid fa-user"></i> -->
         <img src="media/user.png" alt="User">
         <i class="fa-solid fa-chevron-down" id="dropdown"></i>
-        <!-- logout form -->
-        <div id="logoutModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Are you sure you want to logout?</h2>
-            <button id="confirmLogout">Yes, Logout</button>
-            <button id="cancelLogout">Cancel</button>
-        </div>
-    </div>
     </div>
 </header>
 <!-- Side Navigation -->

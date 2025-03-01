@@ -21,6 +21,7 @@
         // If the user exists, redirect to the dashboard
         if ($user) {
             $_SESSION['username'] = $username;
+            $_SESSION['fullname'] = $user['fullname'];
             echo json_encode(array('status' => 'success', 'message' => 'Login successful'));
         } else {
             echo json_encode(array('status' => 'error', 'message' => 'Invalid username or password'));

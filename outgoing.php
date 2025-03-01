@@ -20,6 +20,8 @@
 
 <body>
     <div id="default-container"></div>
+    <!-- modals -->
+    <div id="modal-container"></div>
     <div class="content">
     </div>
     <!-- jquery -->

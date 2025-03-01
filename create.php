@@ -23,6 +23,8 @@
 
 <body>
     <div id="default-container"></div>
+    <!-- modals -->
+    <div id="modal-container"></div>
     <div class="content">
         <!-- Create Document | input field name Tracking Number, Document Title, Document Destination, Deadline and Priority Status. Create and reset button -->
         <div class="form">

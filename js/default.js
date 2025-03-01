@@ -1,3 +1,13 @@
+// modals
+$(document).ready(function() {
+    // Load the modal.html content dynamically
+    const $modalContainer = $('#modal-container');
+        $.get('default/modal.php', function(data) {
+            $modalContainer.html(data);
+        });
+    }
+);
+
 $(document).ready(function() {
     const $sidebarContainer = $('#default-container');
     // Load the sidebar.html content dynamically
@@ -10,6 +20,33 @@ $(document).ready(function() {
             'margin-left': '250px',
             'width': 'calc(95% - 250px)',
             'transition': '0.5s'
+        });
+
+        
+        const $logoutDropdown = $('#dropdown');
+        // Load the dropdown.html content dynamically
+        $logoutDropdown.click(function() {
+            if ($logoutDropdown.hasClass('show')) {
+                $logoutDropdown.removeClass('show');
+                $('#logoutModal').css({'display':'none'});
+            } else {
+                $logoutDropdown.addClass('show');
+                $('#logoutModal').css({'display':'block'});
+
+                // logout conn/logout.php
+                $('#logoutModal').click(function() {
+                    $.get('conn/logout.php', function(data) {
+                        location.reload();
+                    });
+                });
+            }
+            // close modal if clicked outside
+            $(window).click(function(event) {
+                if (!$(event.target).closest('#logoutModal').length && !$(event.target).is('#dropdown')) {
+                    $logoutDropdown.removeClass('show');
+                    $('#logoutModal').css({'display':'none'});
+                }
+            });
         });
     });
 });

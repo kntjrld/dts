@@ -24,6 +24,8 @@
 
 <body>
     <div id="default-container"></div>
+    <!-- modals -->
+    <div id="modal-container"></div>
     <div class="content">
         <div class="container">
             <h3>Track Document</h3>
@@ -70,8 +72,9 @@
     <!-- Search and Pagination Script -->
     <script>
     const data = [
-            // <!-- Origination Office, Title, Doc. No., Status, Office Destination and Category -->
-        {   originationOffice: 'Office A',
+        // <!-- Origination Office, Title, Doc. No., Status, Office Destination and Category -->
+        {
+            originationOffice: 'Office A',
             title: 'Document 1',
             docNo: '001',
             status: 'Pending',
