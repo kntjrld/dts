@@ -1,6 +1,6 @@
 <!-- Session -->
 <?php
-    include 'conn/session.php';
+include 'conn/session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +19,12 @@
     <link rel="stylesheet" href="css/default.css">
     <!-- main.css -->
     <link rel="stylesheet" href="css/main.css">
+    <!-- swalfire.css -->
+    <link rel="stylesheet" href="css/swalfire.css">
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -32,11 +36,11 @@
         <div class="form">
             <h2>Create Document</h2>
             <div class="form-container">
-                <form action="#" method="POST" id="document-form">
+                <form method="POST" id="document-form">
                     <!-- Tracking Number Field -->
                     <div class="form-field">
                         <label for="tracking_number">Tracking Number:</label>
-                        <input type="text" id="tracking_number" name="tracking_number" required>
+                        <input type="text" id="tracking_number" name="tracking_number" disabled>
                     </div>
 
                     <!-- Document Title Field -->
@@ -61,7 +65,7 @@
                     <div class="form-field">
                         <label for="priority_status">Priority Status:</label>
                         <select id="priority_status" name="priority_status" required>
-                            <option value="Urgent">High</option>
+                            <option value="Urgent">Urgent</option>
                             <option value="High Priority">High Priority</option>
                             <option value="Medium Priority">Medium Priority</option>
                             <option value="Low Priority">Low Priority</option>
@@ -71,13 +75,17 @@
                     <!-- Create and Reset Buttons -->
                     <div class="form-actions">
                         <button type="submit" id="create_button">Create</button>
-                        <button type="reset" id="reset_button">Reset</button>
+                        <button type="reset-x" id="reset_button">Reset</button>
                     </div>
                 </form>
             </div>
             <!-- jquery -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="js/default.js"></script>
+            <!-- validation js -->
+            <script src="js/validation.js"></script>
+            <!-- insert js -->
+            <script src="js/insert.js"></script>
 </body>
 
 </html>

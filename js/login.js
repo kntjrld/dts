@@ -23,6 +23,8 @@ $(document).ready(function() {
                     }
                     ).then(function() {
                         window.location = "dashboard";
+                        // refresh element tracking_number
+                        $('#tracking_number').val(generateTrackingNumber());
                     });
                 } else {
                     // swal.fire("Login Failed", "", "error");
