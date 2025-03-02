@@ -24,7 +24,11 @@ $(document).ready(function () {
         // change hamburger-menu icon
         $('.hamburger-menu i').removeClass('fa-bars').addClass('fa-ellipsis-vertical');
 
-        const $logoutDropdown = $('#dropdown');
+        const $logoutDropdown = $('#user-settings');
+        // set dropdown text
+        var $userFullname = $('#displayName').text();
+        const $thumbnail = getThumbnail($userFullname);
+        $('#dropdown').html($thumbnail);
         // Load the dropdown.html content dynamically
         $logoutDropdown.click(function () {
             if ($logoutDropdown.hasClass('show')) {
@@ -35,7 +39,7 @@ $(document).ready(function () {
                 $('#logoutModal-x').css({ 'display': 'block' });
 
                 // logout conn/logout.php
-                $('#logoutModal-x').click(function () {
+                $('#logout_action').click(function () {
                     $.get('conn/logout.php', function (data) {
                         location.reload();
                     });
@@ -106,3 +110,10 @@ $(document).ready(function () {
         updateStatusDesign();
     });
 });
+
+// User fullname tumbnail for replace dropdown : Ex: Kent Abulag -> KA
+function getThumbnail(fullname) {
+    var name = fullname.split(' ');
+    var thumbnail = name[0].charAt(0) + name[1].charAt(0);
+    return thumbnail.toUpperCase();
+}

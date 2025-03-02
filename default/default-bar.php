@@ -6,13 +6,16 @@
         </div>
         <span>DepED</span>
     </div>
-    <div class="user-settings">
+    <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
-        <span><?php echo $_SESSION['fullname']?></span>
+        <span id="displayName" name="displayName" style="display:none"><?php echo $_SESSION['fullname']?></span>
         <!-- <i class="fa-solid fa-user"></i> -->
-        <img src="media/user.png" alt="User">
-        <i class="fa-solid fa-chevron-down" id="dropdown"></i>
+        <!-- <img src="media/user.png" alt="User"> -->
+         <!-- div -->
+        <div class="tumbnail-display">
+            <p id="dropdown"></p>
+        </div>
     </div>
 </header>
 <!-- Side Navigation -->

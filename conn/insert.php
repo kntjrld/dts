@@ -21,6 +21,7 @@ try {
         $tracking_number = $_POST['tracking_number'];
         $document_title = $_POST['document_title'];
         $document_destination = $_POST['document_destination'];
+        $document_origin = $_SESSION['office'];
         $deadline = $_POST['deadline'];
         $priority_status = $_POST['priority_status'];
         $priority_status = $_POST['priority_status'];
@@ -35,6 +36,7 @@ try {
             'tracking_number' => $tracking_number,
             'document_title' => $document_title,
             'document_destination' => $document_destination,
+            'document_origin' => $document_origin,
             'deadline' => $deadline,
             'priority_status' => $priority_status,
             'incoming_flag' => $incoming_flag,

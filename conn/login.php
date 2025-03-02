@@ -24,6 +24,8 @@
             $_SESSION['fullname'] = $user['fullname'];
             $_SESSION['position'] = $user['position'];
             $_SESSION['office'] = $user['office'];
+            // email
+            $_SESSION['email_address'] = $user['email_address'];
             echo json_encode(array('status' => 'success', 'message' => 'Login successful'));
         } else {
             echo json_encode(array('status' => 'error', 'message' => 'Invalid username or password'));
