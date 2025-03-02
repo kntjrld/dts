@@ -26,7 +26,8 @@ $(document).ready(function () {
 
         const $logoutDropdown = $('#user-settings');
         // set dropdown text
-        var $userFullname = $('#displayName').text();
+        var $data = JSON.parse(localStorage.getItem('loginDetails'));
+        var $userFullname = $data.fullname;
         const $thumbnail = getThumbnail($userFullname);
         $('#dropdown').html($thumbnail);
         // Load the dropdown.html content dynamically
@@ -36,6 +37,15 @@ $(document).ready(function () {
                 $('#logoutModal-x').css({ 'display': 'none' });
             } else {
                 $logoutDropdown.addClass('show');
+
+                // get and set fullname and email_address localStorage
+                var $data = JSON.parse(localStorage.getItem('loginDetails'));
+                var $fullname = $data.fullname;
+                var $email_address = $data.email_address;
+                $('#fullname').text($fullname);
+                $('#email_address').text($email_address);
+
+                // show modal
                 $('#logoutModal-x').css({ 'display': 'block' });
 
                 // logout conn/logout.php

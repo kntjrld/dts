@@ -1,7 +1,3 @@
-<!-- Session -->
-<?php
-    include 'conn/session.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +7,10 @@
     <title>Dashboard</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- dashboard.css -->
@@ -50,8 +50,7 @@
             </div>
         </div>
     </div>
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- default -->
     <script src="js/default.js"></script>
 </body>
 

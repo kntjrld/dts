@@ -1,12 +1,11 @@
 <!-- logout modal -->
-<?php include '../conn/session.php'; ?>
 <div class="show" id="logoutModal-x">
     <div class="modal-content-x">
         <!-- head -->
         <div class="modal-head-x">
-            <h5 class="x-h2"><?php echo $_SESSION['fullname'] ?></h5>
+            <h5 class="x-h2" id="fullname"></h5>
             <!-- email -->
-            <p class="x-p"><?php echo $_SESSION['email_address'] ?></p>
+            <p class="x-p" id="email_address"></p>
         </div>
         <div class="modal-body-x">
             <!-- Manage Account -->

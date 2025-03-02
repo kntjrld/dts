@@ -1,7 +1,3 @@
-<!-- Session -->
-<?php
-    include 'conn/session.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +7,12 @@
     <title>Maintenance</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- maintenance css -->
     <link rel="stylesheet" href="css/maintenance.css">
     <!-- default.css -->
@@ -40,10 +42,10 @@
                         <label for="position">Position:</label>
                     </div>
                     <div class="admin-details-content-right">
-                        <label id="username"><?php echo $_SESSION['username']; ?></label>
-                        <label id="fullname"><?php echo $_SESSION['fullname']; ?></label>
-                        <label id="office"><?php echo $_SESSION['office']; ?></label>
-                        <label id="position"><?php echo $_SESSION['position']; ?></label>
+                        <label id="username"></label>
+                        <label id="fullname"></label>
+                        <label id="office"></label>
+                        <label id="position"></label>
                     </div>
                 </div>
                 <!-- button update -->
@@ -56,6 +58,8 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/default.js"></script>
+    <!-- load values -->
+    <script src="js/maintenance.js"></script>
 </body>
 
 </html>

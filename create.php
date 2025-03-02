@@ -1,7 +1,3 @@
-<!-- Session -->
-<?php
-include 'conn/session.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,14 +7,16 @@ include 'conn/session.php';
     <title>Create Document</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- dashboard.css -->
     <link rel="stylesheet" href="css/create.css">
     <!-- default.css -->
     <link rel="stylesheet" href="css/default.css">
-    <!-- main.css -->
-    <link rel="stylesheet" href="css/main.css">
     <!-- swalfire.css -->
     <link rel="stylesheet" href="css/swalfire.css">
     <!-- font-awesome -->
@@ -79,8 +77,6 @@ include 'conn/session.php';
                     </div>
                 </form>
             </div>
-            <!-- jquery -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script src="js/default.js"></script>
             <!-- validation js -->
             <script src="js/validation.js"></script>

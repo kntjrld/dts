@@ -1,4 +1,3 @@
-<?php include '../conn/session.php'; ?>
 <header class="top-header">
     <div class="hamburger-menu">
         <div class="toggle" onclick="toggleNav()">
@@ -9,7 +8,7 @@
     <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
-        <span id="displayName" name="displayName" style="display:none"><?php echo $_SESSION['fullname']?></span>
+        <span id="displayName" name="displayName" style="display:none"></span>
         <!-- <i class="fa-solid fa-user"></i> -->
         <!-- <img src="media/user.png" alt="User"> -->
          <!-- div -->
