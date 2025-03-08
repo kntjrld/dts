@@ -8,12 +8,12 @@
     <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
-        <span id="displayName" name="displayName" style="display:none"></span>
+        <!-- <span id="displayName" name="displayName" style="display:none"></span> -->
         <!-- <i class="fa-solid fa-user"></i> -->
         <!-- <img src="media/user.png" alt="User"> -->
-         <!-- div -->
+        <!-- div -->
         <div class="tumbnail-display">
-            <p id="dropdown"></p>
+            <p id="dropdown">...</p>
         </div>
     </div>
 </header>
@@ -32,3 +32,10 @@
         <li><a href="./user-management"><i class="fa-solid fa-users"></i> User Management</a></li>
     </ul>
 </nav>
+
+<!-- Popup container -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <p></p>
+    </div>
+</div>
