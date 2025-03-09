@@ -39,7 +39,7 @@
             <div class="table-container">
                 <!-- h5 title -->
                 <dv class="x-title">
-                    <h5>Search Result</h5>
+                    <h5>List of users</h5>
                 </dv>
                 <!-- Table -->
                 <table class="table table-striped">

@@ -9,9 +9,9 @@ $collection = $database->selectCollection('documents');
 // Tracking page
 if (isset($_POST['track'])){
     $filter = [];
-    $filter['terminal_flag'] = 0;
-    $filter['outgoing_flag'] = 0;
-    $filter['incoming_flag'] = 0;
+    // $filter['terminal_flag'] = 0;
+    // $filter['outgoing_flag'] = 0;
+    // $filter['incoming_flag'] = 0;
     $cursor = $collection->find($filter);
     $data = iterator_to_array($cursor);
 

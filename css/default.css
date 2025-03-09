@@ -249,3 +249,11 @@ a {
   font-weight: 700;
 }
 
+/* Media query for mobile view */
+@media (max-width: 768px) {
+  #logoutModal-x {
+    width: 100%;
+    /* right: 0; */
+  }
+}
+
