@@ -31,7 +31,7 @@
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
-                <label for="searchInput">Tracking Number:</label>
+                <label for="searchInput">Search:</label>
                 <div class="input-group">
                     <input class="searchInput" id="searchInput" type="text" placeholder="&#xf002;">
                 </div>
@@ -46,6 +46,7 @@
                     <thead>
                         <tr>
                             <th>Username</th>
+                            <th>Fullname</ht>
                             <th>Office</th>
                             <th>Position</th>
                             <th>Action</th>
@@ -110,6 +111,7 @@
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${row.username}</td>
+                <td>${row.fullname}</td>
                 <td>${row.office}</td>
                 <td>${row.position}</td>
                 <td><button class="x-btn-action">Modify</button></td>
@@ -167,7 +169,8 @@
         const searchInput = document.getElementById('searchInput').value.toLowerCase();
         return data.filter(row => {
             return row.username.toLowerCase().includes(searchInput) ||
-                row.office.toLowerCase().includes(searchInput);
+                row.office.toLowerCase().includes(searchInput) ||
+                row.fullname.toLowerCase().includes(searchInput);
         });
     }
 

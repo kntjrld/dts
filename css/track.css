@@ -41,6 +41,10 @@
     margin-top: 20px;
   }
 
+  .search-container label{
+    font-size: 12px;
+  }
+
   /* id searchInput */
   #searchInput {
     width: 100%;
@@ -67,6 +71,6 @@
     border-radius: 5px;
     cursor: pointer;
     width: auto;
-    font-size: 12px;
+    font-size: 10px;
     border: none;
   }

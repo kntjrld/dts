@@ -171,7 +171,9 @@
         const searchInput = document.getElementById('searchInput').value.toLowerCase();
         return data.filter(row => {
             return row.tracking_number.toLowerCase().includes(searchInput) ||
-                row.status.toLowerCase().includes(searchInput);
+                row.status.toLowerCase().includes(searchInput) ||
+                row.priority_status.toLowerCase().includes(searchInput) ||
+                row.document_title.toLowerCase().includes(searchInput);
         });
     }
 
