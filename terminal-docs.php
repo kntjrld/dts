@@ -68,6 +68,7 @@
         </div>
     </div>
     <script src="js/default.js"></script>
+    <script src="js/table.js"></script>
 
     <!-- Search and Pagination Script -->
     <script>
