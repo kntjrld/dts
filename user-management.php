@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/default.css">
     <!-- track css -->
     <link rel="stylesheet" href="css/track.css">
+    <!-- management css -->
+    <link rel="stylesheet" href="css/management.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -25,9 +27,71 @@
     <div id="default-container"></div>
     <!-- modals -->
     <div id="modal-container"></div>
+    <!-- Custom Modal -->
+    <div class="modal fade" id="customModal" tabindex="-1" role="dialog" aria-labelledby="customModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="customModalLabel">Create User</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Modal content goes here -->
+                    <form id="customForm">
+                        <div class="form-group flex-container">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="fullname">Fullname</label>
+                            <input type="text" class="form-control" id="fullname" name="fullname" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="email">Email Address</label>
+                            <input type="emaii" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="office">Office</label>
+                            <input type="text" class="form-control" id="office" name="office" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="type">User type</label>
+                            <select class="form-control" id="type" name="type" required>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="position">Position</label>
+                            <input type="text" class="form-control" id="position" name="position" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="password_confirm">Confirm Password</label>
+                            <input type="password" class="form-control" id="password_confirm" name="password_confirm"
+                                required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="content">
         <div class="container">
-            <h3>Users</h3>
+            <div class="container-header">
+                <h3>Users</h3>
+                <i class="fa-solid fa-user-plus" data-toggle="modal" data-target="#customModal"></i>
+            </div>
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
@@ -69,6 +133,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/default.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Search and Pagination Script -->
     <script>
@@ -180,6 +245,24 @@
         const filteredData = filterData();
         displayTable(filteredData);
         createPagination(filteredData);
+    });
+
+    // Event listener for save changes button in modal
+    document.getElementById('saveChanges').addEventListener('click', function() {
+        const form = document.getElementById('customForm');
+        if (form.checkValidity()) {
+            const formData = {
+                username: form.username.value,
+                fullname: form.fullname.value,
+                office: form.office.value,
+                position: form.position.value
+            };
+            // Handle form data (e.g., send to server or update table)
+            console.log('Form Data:', formData);
+            $('#customModal').modal('hide');
+        } else {
+            form.reportValidity();
+        }
     });
 
     // Initial setup
