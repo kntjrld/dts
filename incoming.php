@@ -79,7 +79,10 @@
     const rowsPerPage = 5; // Number of rows per page
     let currentPage = 1; // Current page
 
-
+    // localStorage
+    var $data = JSON.parse(localStorage.getItem('loginDetails'));
+    // get and set from localStorage
+    var office = $data.office;
     // Function to fetch data from the server
     function fetchData() {
         $.ajax({
@@ -87,7 +90,8 @@
             method: 'POST',
             dataType: 'json',
             data: {
-                incoming: true
+                incoming: true,
+                office: office
             },
             success: function(response) {
                 data = response;
@@ -96,7 +100,6 @@
                 createPagination(filteredData);
             },
             error: function(error) {
-                alert(error);
                 console.error('Error fetching data:', error);
             }
         });
