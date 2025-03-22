@@ -3,7 +3,7 @@
         <div class="toggle" onclick="toggleNav()">
             <i class="fa-solid"></i>
         </div>
-        <span><img src="media/DepED logo v1.png" class="header_logo"></span>
+        <span><img src="media/DepED.png" class="header_logo"></span>
     </div>
     <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
