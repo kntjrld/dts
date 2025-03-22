@@ -250,6 +250,11 @@ a {
   font-weight: 700;
 }
 
+.header_logo{
+  height: auto;
+  width: 120px;
+}
+
 /* Media query for mobile view */
 @media (max-width: 768px) {
   #logoutModal-x {

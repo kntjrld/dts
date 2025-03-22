@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="css/track.css">
     <!-- management css -->
     <link rel="stylesheet" href="css/management.css">
+    <!-- swalfire.css -->
+    <link rel="stylesheet" href="css/swalfire.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Modal content goes here -->
-                    <form id="customForm">
+                    <form id="CreateUserForm">
                         <div class="form-group flex-container">
                             <label for="username">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -51,11 +53,13 @@
                         </div>
                         <div class="form-group flex-container">
                             <label for="email">Email Address</label>
-                            <input type="emaii" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="form-group flex-container">
                             <label for="office">Office</label>
-                            <input type="text" class="form-control" id="office" name="office" required>
+                            <select class="form-control" id="office" name="office" required>
+                                <!-- Options will be populated here -->
+                            </select>
                         </div>
                         <div class="form-group flex-container">
                             <label for="type">User type</label>
@@ -68,7 +72,7 @@
                             <label for="position">Position</label>
                             <input type="text" class="form-control" id="position" name="position" required>
                         </div>
-                        <div class="form-group flex-container">
+                        <!-- <div class="form-group flex-container">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
@@ -76,8 +80,9 @@
                             <label for="password_confirm">Confirm Password</label>
                             <input type="password" class="form-control" id="password_confirm" name="password_confirm"
                                 required>
-                        </div>
+                        </div> -->
                     </form>
+                    <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -134,6 +139,35 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/default.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/table.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        // Fetch document destinations from the server
+        $.ajax({
+            url: 'conn/manage_db.php',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                admin: true
+            },
+            success: function(response) {
+                const destinationSelect = $('#office');
+                response.forEach(off => {
+                    const option = $('<option></option>').attr('value', off
+                        .office_name).text(off.office_name);
+                    destinationSelect.append(option);
+                });
+            },
+            error: function(error) {
+                // alert(error);
+                console.error('Error fetching destinations:', error);
+            }
+        });
+    });
+    </script>
 
     <!-- Search and Pagination Script -->
     <script>
@@ -247,19 +281,101 @@
         createPagination(filteredData);
     });
 
+    // Event listener for username input
+    $('#username').on('blur', function() {
+        const username = $(this).val();
+        if (username) {
+            checkUserExists('username', username);
+        }
+    });
+
+    // Event listener for email input
+    $('#email').on('blur', function() {
+        const email = $(this).val();
+        if (email) {
+            checkUserExists('email', email);
+        }
+    });
+
+    function checkUserExists(field, value) {
+        $.ajax({
+            url: 'conn/check_user.php',
+            method: 'POST',
+            data: {
+                [field]: value
+            },
+            success: function(response) {
+                response = JSON.parse(response);
+                if (response.status === "exists") {
+                    if (field === 'username') {
+                        $('#CreateUserForm').addClass('is-invalid');
+                        $('#CreateUserForm').next('.invalid-feedback').text(response.message).show();
+                        $('#username').val('');
+                        $('#username').focus();
+                    } else if (field === 'email') {
+                        $('#CreateUserForm').addClass('is-invalid');
+                        $('#CreateUserForm').next('.invalid-feedback').text(response.message).show();
+                        $('#email').val('');
+                        $('#email').focus();
+                    }
+                } else {
+                    if (field === 'username') {
+                        $('#CreateUserForm').removeClass('is-invalid');
+                        $('#CreateUserForm').next('.invalid-feedback').hide();
+                    } else if (field === 'email') {
+                        $('#CreateUserForm').removeClass('is-invalid');
+                        $('#CreateUserForm').next('.invalid-feedback').hide();
+                    }
+                }
+            },
+            error: function(error) {
+                console.error('Error checking user data:', error);
+            }
+        });
+    }
+
     // Event listener for save changes button in modal
     document.getElementById('saveChanges').addEventListener('click', function() {
-        const form = document.getElementById('customForm');
+        const form = document.getElementById('CreateUserForm');
         if (form.checkValidity()) {
             const formData = {
                 username: form.username.value,
                 fullname: form.fullname.value,
+                email: form.email.value,
                 office: form.office.value,
                 position: form.position.value
             };
-            // Handle form data (e.g., send to server or update table)
-            console.log('Form Data:', formData);
-            $('#customModal').modal('hide');
+            // Send form data to the server using AJAX
+            $.ajax({
+                url: 'conn/create_user.php', // Change this to your server-side script
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    response = JSON.parse(response);
+                    console.log('Form Data Saved:', response);
+                    alert(response.status);
+                    if (response.status === "success") {
+                        Swal.fire({
+                            title: response.message,
+                            icon: "success",
+                            timer: 2000
+                        }).then(function() {
+                            $('#customModal').modal('hide');
+                            fetchData(); // Refresh the table data
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Insert Failed',
+                            text: response.message,
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.error('Error saving form data:', error);
+                }
+            });
         } else {
             form.reportValidity();
         }

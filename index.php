@@ -28,7 +28,7 @@
 
         <!-- Login Form -->
         <div id="logo">
-            <img src="media/DepED logo.png" class="logo">
+            <img src="media/DepED logo v1.png" class="logo">
         </div>
         <div id="login-form" class="form">
             <h2>Login</h2>

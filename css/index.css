@@ -8,8 +8,8 @@ body {
     margin: 0;
 }
 .logo{
-    height:100px;
-    width: 100px;
+    height:auto;
+    width: 150px;
     margin-bottom: -20px;
 }
 .form-container {
