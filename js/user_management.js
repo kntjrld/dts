@@ -96,7 +96,10 @@ function displayTable(filteredData) {
             <td>${row.fullname}</td>
             <td>${row.office}</td>
             <td>${row.position}</td>
-            <td><button class="x-btn-action">Modify</button></td>
+            <td>
+                <button class="x-btn-action" data-username="${row.username}" onclick="editUser('${row.username}')">Edit</button>
+                <button class="btn-danger" data-username="${row.username}" onclick="deleteUser('${row.username}')">Delete</button>
+            </td>
         `;
         tableBody.appendChild(tr);
     });
@@ -290,3 +293,15 @@ document.getElementById('saveChanges').addEventListener('click', function () {
         form.reportValidity();
     }
 });
+
+// Function to edit user
+function editUser(username) {
+    // Implement the logic to edit the user with the given username
+    console.log('Edit user with username:', username);
+}
+
+// Function to delete user
+function deleteUser(username) {
+    // Implement the logic to delete the user with the given username
+    console.log('Delete user with username:', username);
+}
