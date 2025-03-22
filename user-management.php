@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group flex-container">
                             <label for="type">User type</label>
-                            <select class="form-control" id="type" name="type" required>
+                            <select class="form-control" id="user_type" name="user_type" required>
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
                             </select>
@@ -167,10 +167,43 @@
             }
         });
     });
-    </script>
 
-    <!-- Search and Pagination Script -->
-    <script>
+    function generatePassword(length = 8) {
+        const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const charactersLength = characters.length;
+        let randomString = '';
+        for (let i = 0; i < length; i++) {
+            randomString += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return randomString;
+    }
+
+    function sendPasswordEmail(email, password) {
+        const subject = "DTS Account Created";
+        const message = `Your account has been created. Your password is: ${password}`;
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: 'send_email_smtp.php',
+                method: 'POST',
+                data: {
+                    email: email,
+                    subject: subject,
+                    message: message
+                },
+                success: function(response) {
+                    // alert(response);
+                    resolve(response);
+                },
+                error: function(error) {
+                    // alert(error);
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    // Search and Pagination Script
     let data = [];
     const rowsPerPage = 5; // Number of rows per page
     let currentPage = 1; // Current page
@@ -191,7 +224,6 @@
                 createPagination(filteredData);
             },
             error: function(error) {
-                alert(error);
                 console.error('Error fetching data:', error);
             }
         });
@@ -338,12 +370,15 @@
     document.getElementById('saveChanges').addEventListener('click', function() {
         const form = document.getElementById('CreateUserForm');
         if (form.checkValidity()) {
+            const password = generatePassword();
             const formData = {
                 username: form.username.value,
                 fullname: form.fullname.value,
                 email: form.email.value,
                 office: form.office.value,
-                position: form.position.value
+                position: form.position.value,
+                user_type: form.user_type.value,
+                password: password
             };
             // Send form data to the server using AJAX
             $.ajax({
@@ -353,15 +388,23 @@
                 success: function(response) {
                     response = JSON.parse(response);
                     console.log('Form Data Saved:', response);
-                    alert(response.status);
                     if (response.status === "success") {
-                        Swal.fire({
-                            title: response.message,
-                            icon: "success",
-                            timer: 2000
-                        }).then(function() {
-                            $('#customModal').modal('hide');
-                            fetchData(); // Refresh the table data
+                        sendPasswordEmail(formData.email, formData.password).then(() => {
+                            Swal.fire({
+                                title: response.message,
+                                icon: "success",
+                                timer: 2000
+                            }).then(function() {
+                                $('#customModal').modal('hide');
+                                fetchData(); // Refresh the table data
+                            });
+                        }).catch(() => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Email Failed',
+                                text: 'Failed to send password email.',
+                                confirmButtonText: 'Try Again'
+                            });
                         });
                     } else {
                         Swal.fire({

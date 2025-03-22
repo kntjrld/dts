@@ -11,9 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $office = $_POST['office'];
     $position = $_POST['position'];
+    $user_type = $_POST['user_type'];
+    $password = $_POST['password'];
 
     // Validate the data (you can add more validation as needed)
-    if (empty($username) || empty($fullname) || empty($email) || empty($office) || empty($position)) {
+    if (empty($username) || empty($fullname) || empty($email) || empty($office) || empty($position) || empty($password)) {
         echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
         exit;
     }
@@ -21,18 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Prepare the MongoDB document
     $database = $client->selectDatabase('dts_db');
     $collection = $database->selectCollection('users');
-    $document = [
+    $new_user = [
         'username' => $username,
         'fullname' => $fullname,
-        'email' => $email,
+        'email_address' => $email,
         'office' => $office,
-        'position' => $position
-        // 'created_at' => new MongoDB\BSON\UTCDateTime()
+        'position' => $position,
+        'user_type' => $user_type,
+        'password' => $password
     ];
 
     // Insert the document into the collection
     try {
-        $result = $collection->insertOne($document);
+        $result = $collection->insertOne($new_user);
         if ($result->getInsertedCount() === 1) {
             echo json_encode(['status' => 'success', 'message' => 'User created successfully.']);
         } else {

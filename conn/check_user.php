@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($email) {
-        $query['email'] = $email;
+        $query['email_address'] = $email;
     }
 
     // Check if the user exists
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($existingUser) {
         if ($existingUser['username'] === $username) {
             echo json_encode(['status' => 'exists', 'message' => 'Username already exists.']);
-        } elseif ($existingUser['email'] === $email) {
+        } elseif ($existingUser['email_address'] === $email) {
             echo json_encode(['status' => 'exists', 'message' => 'Email already exists.']);
         }
     } else {
