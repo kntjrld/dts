@@ -195,12 +195,12 @@ function checkUserExists(field, value) {
             if (response.status === "exists") {
                 if (field === 'username') {
                     $('#CreateUserForm').addClass('is-invalid');
-                    $('#CreateUserForm').next('.invalid-feedback').text(response.message).show();
+                    $('#CreateUserForm').next('.invalid-feedback').text("Warning: " + response.message).show();
                     $('#username').val('');
                     $('#username').focus();
                 } else if (field === 'email') {
                     $('#CreateUserForm').addClass('is-invalid');
-                    $('#CreateUserForm').next('.invalid-feedback').text(response.message).show();
+                    $('#CreateUserForm').next('.invalid-feedback').text("Warning: " + response.message).show();
                     $('#email').val('');
                     $('#email').focus();
                 }
@@ -257,6 +257,7 @@ document.getElementById('saveChanges').addEventListener('click', function () {
                         Swal.fire({
                             title: response.message,
                             icon: "success",
+                            text: "Password sent to user email.",
                             timer: 2000
                         }).then(function () {
                             $('#customModal').modal('hide');
@@ -302,6 +303,46 @@ function editUser(username) {
 
 // Function to delete user
 function deleteUser(username) {
-    // Implement the logic to delete the user with the given username
-    console.log('Delete user with username:', username);
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: 'conn/delete_user.php',
+                method: 'POST',
+                data: { username: username },
+                success: function (response) {
+                    response = JSON.parse(response);
+                    if (response.status === "success") {
+                        Swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        fetchData(); // Refresh the table data
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function (error) {
+                    console.error('Error deleting user:', error);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to delete user.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
 }

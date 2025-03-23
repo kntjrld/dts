@@ -20,7 +20,7 @@
     color: #666; /* Slightly lighter text color */
 }
 
-.swal2-confirm {
+.swal2-confirm, .swal2-cancel {
     background-color: #4CAF50; /* Green button */
     color: #fff; /* White text */
     border-radius: 5px; /* Rounded corners */
