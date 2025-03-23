@@ -7,6 +7,10 @@
     font-size: 20px;
 }
 
+.modal-header .close {
+    color: #fff;
+}
+
 .flex-container {
     display: flex;
     align-items: center;

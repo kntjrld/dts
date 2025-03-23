@@ -42,10 +42,11 @@ body {
 }
 .form input, .form button, .form select {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 14px;
     box-sizing: border-box;
 }
 .form select[name="usertype"], select[name="office"], select option[value="officedesignation"]{
@@ -80,7 +81,13 @@ body {
 label {
     display: block;
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 12px;
+}
+
+h2{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 @media (max-width: 768px) {
@@ -139,4 +146,41 @@ footer{
     bottom: -10px;
     width: 100%;
     font-size: 12px;
+}
+
+.modal-header.bg-primary {
+    background-color: #007bff;
+    border-bottom: 2px solid #0056b3;
+}
+
+.modal-header .close {
+    color: #fff;
+}
+
+.modal-body .container {
+    padding: 0;
+}
+
+.modal-body .row {
+    margin-bottom: 10px;
+}
+
+.modal-body .col-md-6 {
+    padding: 0;
+}
+
+.modal-body .font-weight-bold {
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-footer {
+    border-top: 1px solid #e9ecef;
+    padding-top: 15px;
+}
+
+
+.modal-body .container  {
+    padding: 10px;   
+    font-size: 14px;
 }
