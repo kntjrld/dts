@@ -9,14 +9,12 @@
     <link rel="icon" href="media/DepED logo.png">
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- connection js -->
-    <script src="js/connection.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- dashboard.css -->
-    <link rel="stylesheet" href="css/dashboard.css">
     <!-- default.css -->
     <link rel="stylesheet" href="css/default.css">
+    <!-- dashboard.css -->
+    <link rel="stylesheet" href="css/dashboard.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -55,6 +53,8 @@
     </div>
     <!-- default -->
     <script src="js/default.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
 </body>
 
 </html>
