@@ -7,8 +7,6 @@
     <title>Maintenance</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- maintenance css -->

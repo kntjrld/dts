@@ -74,15 +74,6 @@
                             <label for="position">Position</label>
                             <input type="text" class="form-control" id="position" name="position" required>
                         </div>
-                        <!-- <div class="form-group flex-container">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <div class="form-group flex-container">
-                            <label for="password_confirm">Confirm Password</label>
-                            <input type="password" class="form-control" id="password_confirm" name="password_confirm"
-                                required>
-                        </div> -->
                     </form>
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
                 </div>

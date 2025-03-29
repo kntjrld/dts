@@ -24,7 +24,6 @@ try {
         $document_origin = $_SESSION['office'];
         $deadline = $_POST['deadline'];
         $priority_status = $_POST['priority_status'];
-        $priority_status = $_POST['priority_status'];
         $incoming_flag = 0;
         $outgoing_flag = 0;
         $terminal_flag = 0;

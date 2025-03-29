@@ -48,7 +48,7 @@ if (isset($_POST['terminal']) && isset($_POST['office'])){
     $filter['terminal_flag'] = 1;
     $filter['outgoing_flag'] = 0;
     $filter['incoming_flag'] = 0;
-    $filter['document_origin'] = $_POST['office'];
+    $filter['document_destination'] = $_POST['office'];
     $cursor = $collection->find($filter);
     $data = iterator_to_array($cursor);
 

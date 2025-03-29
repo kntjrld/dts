@@ -7,14 +7,14 @@
     <title>Incoming</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- default.css -->
     <link rel="stylesheet" href="css/default.css">
     <!-- track css -->
     <link rel="stylesheet" href="css/track.css">
+    <!-- swalfire.css -->
+    <link rel="stylesheet" href="css/swalfire.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -115,10 +115,13 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/default.js"></script>
     <!-- connection js -->
     <script src="js/connection.js"></script>
     <script src="js/table.js"></script>
+    <!-- Actions -->
+    <script src="js/incoming.js"></script>
 
     <script>
         let data = [];
