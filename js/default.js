@@ -120,10 +120,3 @@ function getThumbnail(fullname) {
     var thumbnail = name[0].charAt(0) + name[1].charAt(0);
     return thumbnail.toUpperCase();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-        preloader.style.display = "none";
-    }
-});
