@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="css/default.css">
     <!-- track css -->
     <link rel="stylesheet" href="css/track.css">
+    <!-- outgoing css -->
+    <link rel="stylesheet" href="css/outgoing.css">
+    <!-- swalfire.css -->
+    <link rel="stylesheet" href="css/swalfire.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -78,7 +82,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="viewModalBody">
+                        <!-- Existing view modal body -->
                         <div class="container">
                             <div class="row mb-3">
                                 <div class="col-md-6 font-weight-bold">Tracking Number:</div>
@@ -102,9 +107,41 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-body d-none" id="editModalBody">
+                        <!-- Hidden edit modal body -->
+                        <div class="form-field">
+                            <label for="editTrackingNumber">Tracking Number:</label>
+                            <input type="text" class="form-control" id="editTrackingNumber">
+                        </div>
+                        <div class="form-field">
+                            <label for="editDocumentTitle">Document Title:</label>
+                            <input type="text" class="form-control" id="editDocumentTitle">
+                        </div>
+                        <div class="form-field">
+                            <label for="document_destination">Document Destination:</label>
+                            <select type="text" class="form-control" id="document_destination">
+                                <!-- Options will be populated here -->
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="editDeadline">Deadline:</label>
+                            <input type="date" class="form-control" id="editDeadline">
+                        </div>
+                        <div class="form-field">
+                            <label for="editPriorityStatus">Priority Status:</label>
+                            <select class="form-control" id="editPriorityStatus">
+                                <option value="Urgent">Urgent</option>
+                                <option value="High Priority">High Priority</option>
+                                <option value="Medium Priority">Medium Priority</option>
+                                <option value="Low Priority">Low Priority</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="modal-footer" id="outgoingModalFooter">
                         <button type="button" class="btn btn-primary" id="btnEdit">Edit</button>
                         <button type="button" class="btn btn-danger" id="btnDelete">Delete</button>
+                        <button type="button" class="btn btn-success d-none" id="btnSave">Save</button>
+                        <button type="button" class="btn btn-secondary d-none" id="btnCancel">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -113,10 +150,15 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/default.js"></script>
     <!-- connection js -->
     <script src="js/connection.js"></script>
     <script src="js/table.js"></script>
+    <!-- destination js -->
+    <script src="js/destination.js"></script>
+    <!-- fetchRecord js -->
+    <script src="js/fetchRecord.js"></script>
     <script>
         let data = [];
         const rowsPerPage = 5; // Number of rows per page
@@ -126,6 +168,7 @@
         var $data = JSON.parse(localStorage.getItem('loginDetails'));
         // get and set from localStorage
         var office = $data.office;
+
         // Function to fetch data from the server
         function fetchData() {
             $.ajax({
@@ -147,6 +190,62 @@
                 }
             });
         }
+
+        // Toggle between view and edit modal bodies
+        $('#btnEdit').on('click', function() {
+            $('#viewModalBody').addClass('d-none');
+            $('#editModalBody').removeClass('d-none');
+            $('#btnEdit').addClass('d-none');
+            $('#btnDelete').addClass('d-none');
+            $('#btnSave').removeClass('d-none');
+            $('#btnCancel').removeClass('d-none');
+
+            const trackingNumber = $('#modalTrackingNumber').text().trim();
+            console.log('Fetching record for tracking number:', trackingNumber);
+
+            // Populate edit modal with data using fetchByTrackingNumber
+            fetchByTrackingNumber(trackingNumber, function(record) {
+                console.log('Record data:', record);
+                $('#editTrackingNumber').val(record.tracking_number).prop('readonly', true);
+                $('#editDocumentTitle').val(record.document_title);
+                $('#document_destination').val(record.document_destination);
+                $('#editDeadline').val(record.deadline);
+                $('#editPriorityStatus').val(record.priority_status);
+            });
+        });
+
+        $('#btnCancel').on('click', function() {
+            $('#editModalBody').addClass('d-none');
+            $('#viewModalBody').removeClass('d-none');
+            $('#btnSave').addClass('d-none');
+            $('#btnCancel').addClass('d-none');
+            $('#btnEdit').removeClass('d-none');
+            $('#btnDelete').removeClass('d-none');
+        });
+
+        // Toggle btn delete
+        $('#btnDelete').on('click', function() {
+            const trackingNumber = $('#modalTrackingNumber').text().trim();
+            console.log('Deleting record for tracking number:', trackingNumber);
+
+            // Show confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Do you want to delete the document with Tracking Number: ${trackingNumber}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Delete it!',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteByTrackingNumber(trackingNumber);
+                    $('#detailsModal').modal('hide');
+                    fetchData(); // Refresh the table data
+                }
+            });
+        });
 
         // Initial setup
         fetchData();

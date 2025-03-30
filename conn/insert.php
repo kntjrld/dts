@@ -24,8 +24,8 @@ try {
         $document_origin = $_SESSION['office'];
         $deadline = $_POST['deadline'];
         $priority_status = $_POST['priority_status'];
-        $incoming_flag = 0;
-        $outgoing_flag = 0;
+        $incoming_flag = 1;
+        $outgoing_flag = 1;
         $terminal_flag = 0;
         $status = 'Pending';
         $created_date = date('Y-m-d H:i:s');
