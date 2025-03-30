@@ -215,38 +215,51 @@
         });
 
         $('#btnCancel').on('click', function() {
+            viewOnly();
+        });
+
+        $('#btnSave').on('click', function() {
+            const trackingNumber = $('#editTrackingNumber').val();
+            const documentTitle = $('#editDocumentTitle').val();
+            const documentDestination = $('#document_destination').val();
+            const deadline = $('#editDeadline').val();
+            const priorityStatus = $('#editPriorityStatus').val();
+
+            // Show confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `Do you want to save the changes for Tracking Number: ${trackingNumber}?`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Save it!',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed with saving the changes
+                    updateByTrackingNumber(trackingNumber, documentDestination, documentTitle, deadline, priorityStatus);
+                    $('#detailsModal').modal('hide');
+                    fetchData(); // Refresh the table data
+                    viewOnly();
+                }
+            });
+        });
+
+        //click close button modal
+        $('#detailsModal').on('hidden.bs.modal', function() {
+            viewOnly();
+        });
+
+        function viewOnly() {
             $('#editModalBody').addClass('d-none');
             $('#viewModalBody').removeClass('d-none');
             $('#btnSave').addClass('d-none');
             $('#btnCancel').addClass('d-none');
             $('#btnEdit').removeClass('d-none');
             $('#btnDelete').removeClass('d-none');
-        });
-
-        // Toggle btn delete
-        $('#btnDelete').on('click', function() {
-            const trackingNumber = $('#modalTrackingNumber').text().trim();
-            console.log('Deleting record for tracking number:', trackingNumber);
-
-            // Show confirmation dialog
-            Swal.fire({
-                title: 'Are you sure?',
-                text: `Do you want to delete the document with Tracking Number: ${trackingNumber}?`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Delete it!',
-                cancelButtonText: 'Cancel',
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    deleteByTrackingNumber(trackingNumber);
-                    $('#detailsModal').modal('hide');
-                    fetchData(); // Refresh the table data
-                }
-            });
-        });
-
+        }
+        
         // Initial setup
         fetchData();
     </script>

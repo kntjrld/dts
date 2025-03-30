@@ -7,14 +7,12 @@
     <title>Create Document</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- default.css -->
-    <link rel="stylesheet" href="css/default.css">
     <!-- dashboard.css -->
     <link rel="stylesheet" href="css/create.css">
+    <!-- default.css -->
+    <link rel="stylesheet" href="css/default.css">
     <!-- swalfire.css -->
     <link rel="stylesheet" href="css/swalfire.css">
     <!-- font-awesome -->
@@ -80,15 +78,20 @@
                     </div>
                 </form>
             </div>
-            <script src="js/default.js"></script>
-            <!-- connection js -->
-            <script src="js/connection.js"></script>
-            <!-- validation js -->
-            <script src="js/validation.js"></script>
-            <!-- insert js -->
-            <script src="js/insert.js"></script>
-            <!-- destination js -->
-            <script src="js/destination.js"></script>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/default.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
+    <!-- validation js -->
+    <script src="js/validation.js"></script>
+    <!-- insert js -->
+    <script src="js/insert.js"></script>
+    <!-- destination js -->
+    <script src="js/destination.js"></script>
 </body>
 
 </html>

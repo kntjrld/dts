@@ -347,3 +347,15 @@ a {
   }
 }
 
+#btnUpdate {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#manageAccountModal .modal-body {
+  padding: 20px;
+}

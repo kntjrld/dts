@@ -48,6 +48,28 @@ $(document).ready(function () {
                 // show modal
                 $('#logoutModal-x').css({ 'display': 'block' });
 
+                // Open Manage Account Modal
+                $('#manageAccount').on('click', function () {
+
+                    $(document).ready(function () {
+                        // localStorage
+                        var $data = JSON.parse(localStorage.getItem('loginDetails'));
+                        // get and set from localStorage
+                        var $username = $data.username;
+                        var $fullname = $data.fullname;
+                        var $office = $data.office;
+                        var $position = $data.position;
+
+                        $('#username').text($username);
+                        $('#fullName').text($fullname);
+                        $('#office').text($office);
+                        $('#position').text($position);
+                    });
+
+                    // Show the modal
+                    $('#manageAccountModal').modal('show');
+                });
+
                 // logout conn/logout.php
                 $('#logout_action').click(function () {
                     $.get('conn/logout.php', function (data) {
@@ -120,3 +142,28 @@ function getThumbnail(fullname) {
     var thumbnail = name[0].charAt(0) + name[1].charAt(0);
     return thumbnail.toUpperCase();
 }
+
+// Toggle btn delete
+$('#btnDelete').on('click', function () {
+    const trackingNumber = $('#modalTrackingNumber').text().trim();
+    console.log('Deleting record for tracking number:', trackingNumber);
+
+    // Show confirmation dialog
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `Do you want to delete the document with Tracking Number: ${trackingNumber}?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Delete it!',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            deleteByTrackingNumber(trackingNumber);
+            $('#detailsModal').modal('hide');
+            $('#editModalBody').addClass('d-none');
+            fetchData(); // Refresh the table data
+        }
+    });
+});

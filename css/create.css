@@ -1,31 +1,31 @@
-  .form-container {
+  .content .form-container {
     margin: 0 auto;
     width: auto;
   }
-  
-  h2 {
+
+  .content h2 {
     font-size: 18px;
     margin-bottom: 20px;
   }
-  
-  .form-field {
-        margin-bottom: 15px;
-        display: flex;
-        /* no wrap */
-        white-space: nowrap;
-        overflow: hidden;
+
+  .content .form-field {
+    margin-bottom: 15px;
+    display: flex;
+    /* no wrap */
+    white-space: nowrap;
+    overflow: hidden;
   }
-  
-  .form-field label {
+
+  .content .form-field label {
     display: inline-block;
-    width: 50%; 
-    text-align: left; 
-    margin-right: 10px; 
+    width: 50%;
+    text-align: left;
+    margin-right: 10px;
     font-size: 14px;
   }
-  
-  .form-field input,
-  .form-field select {
+
+  .content .form-field input,
+  .content .form-field select {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -34,36 +34,36 @@
     transition: border-color 0.3s ease;
     width: 50%;
   }
-  
-  .form-field input:focus,
-  .form-field select:focus {
+
+  .content .form-field input:focus,
+  .content .form-field select:focus {
     border-color: #4CAF50;
     outline: none;
-}
-  
-.form-actions {
-  display: inline-block;
-  width: 100%;
-}
-  
-  #reset_button {
+  }
+
+  .content .form-actions {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .content #reset_button {
     background-color: #ccc;
   }
-  
-  #reset_button:hover {
+
+  .content #reset_button:hover {
     background-color: #ccc;
   }
-  
-  #create_button {
+
+  .content #create_button {
     background-color: #4CAF50;
     color: white;
   }
-  
-  #create_button:hover {
+
+  .content #create_button:hover {
     background-color: #388E3C;
   }
-  
-  button {
+
+  .content button {
     margin-top: 10px;
     padding: 10px;
     font-size: 12px;
@@ -73,11 +73,11 @@
     transition: background-color 0.3s ease;
     width: 100%;
   }
-  
-  button:hover {
+
+  .content button:hover {
     opacity: 0.8;
   }
-  
-  button:focus {
+
+  .content button:focus {
     outline: none;
   }

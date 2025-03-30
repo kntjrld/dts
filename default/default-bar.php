@@ -8,10 +8,6 @@
     <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
-        <!-- <span id="displayName" name="displayName" style="display:none"></span> -->
-        <!-- <i class="fa-solid fa-user"></i> -->
-        <!-- <img src="media/user.png" alt="User"> -->
-        <!-- div -->
         <div class="tumbnail-display">
             <p id="dropdown">...</p>
         </div>
@@ -28,7 +24,7 @@
         <li><a href="./incoming"><i class="fa-solid fa-inbox"></i> Incoming</a></li>
         <li><a href="./outgoing"><i class="fa-solid fa-paper-plane"></i> Outgoing</a></li>
         <li><a href="./terminal-docs"><i class="fa-solid fa-archive"></i> Terminal Docs</a></li>
-        <li><a href="./maintenance"><i class="fa-solid fa-cogs"></i> Maintenance</a></li>
+        <!-- <li><a href="./maintenance"><i class="fa-solid fa-cogs"></i> Maintenance</a></li> -->
         <li><a href="./user-management"><i class="fa-solid fa-users"></i> User Management</a></li>
     </ul>
 </nav>

@@ -7,8 +7,6 @@
     <title>Track Document</title>
     <!-- icon -->
     <link rel="icon" href="media/DepED logo.png">
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- connection js -->
     <script src="js/connection.js"></script>
     <!-- Bootstrap CSS -->
@@ -109,8 +107,10 @@
             </div>
         </div>
     </div>
-    <script src="js/default.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/default.js"></script>
     <script src="js/table.js"></script>
 
     <!-- Search and Pagination Script -->

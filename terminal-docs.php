@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/default.css">
     <!-- track css -->
     <link rel="stylesheet" href="css/track.css">
+    <!-- swalfire.css -->
+    <link rel="stylesheet" href="css/swalfire.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
@@ -112,7 +114,10 @@
     <!-- connection js -->
     <script src="js/connection.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/table.js"></script>
+    <!-- fetchRecord js -->
+    <script src="js/fetchRecord.js"></script>
 
     <!-- Search and Pagination Script -->
     <script>
