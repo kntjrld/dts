@@ -18,10 +18,11 @@
 
   .content .form-field label {
     display: inline-block;
-    width: 50%;
+    width: 100%;
     text-align: left;
     margin-right: 10px;
     font-size: 14px;
+    margin-top: 10px;
   }
 
   .content .form-field input,
@@ -30,9 +31,8 @@
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    align-items: end;
     transition: border-color 0.3s ease;
-    width: 50%;
+    width: 100%;
   }
 
   .content .form-field input:focus,

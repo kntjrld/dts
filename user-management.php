@@ -47,32 +47,34 @@
                     <form id="CreateUserForm">
                         <div class="form-group flex-container">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <input type="text" class="form-control username" id="username" name="username" placeholder="Enter Unique username" required>
                         </div>
                         <div class="form-group flex-container">
                             <label for="fullname">Fullname</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" required>
+                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Fullname" required>
                         </div>
                         <div class="form-group flex-container">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required>
                         </div>
                         <div class="form-group flex-container">
-                            <label for="office">Office</label>
-                            <select class="form-control" id="office" name="office" required>
+                            <label for="getOffice">Office</label>
+                            <select class="form-control" id="getOffice" name="getOffice" required>
+                                <option value="" disabled selected>Select Office</option>
                                 <!-- Options will be populated here -->
                             </select>
                         </div>
                         <div class="form-group flex-container">
                             <label for="type">User type</label>
                             <select class="form-control" id="user_type" name="user_type" required>
+                                <option value="" disabled selected>Select User Type</option>
                                 <option value="Admin">Admin</option>
                                 <option value="User">User</option>
                             </select>
                         </div>
                         <div class="form-group flex-container">
                             <label for="position">Position</label>
-                            <input type="text" class="form-control" id="position" name="position" required>
+                            <input type="text" class="form-control" id="position" name="position" placeholder="Enter Position" required>
                         </div>
                     </form>
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>

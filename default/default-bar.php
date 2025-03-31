@@ -9,7 +9,7 @@
         <!-- Notification, UserName(icon) and dropdown icon -->
         <i class="fa-solid fa-bell"></i>
         <div class="tumbnail-display">
-            <p id="dropdown">...</p>
+            <p id="dropdown"></p>
         </div>
     </div>
 </header>

@@ -1,17 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
-.logo{
-    height:auto;
+
+.logo {
+    height: auto;
     width: 150px;
     margin-bottom: -20px;
 }
+
 .form-container {
     background-color: #fff;
     padding: 30px;
@@ -36,25 +37,48 @@ body {
     transition: background-color 0.3s;
 }
 
-.tab:hover, .tab.active {
+.tab.active {
     background-color: #0a488a;
     color: #fff;
+    border-radius: 10px 0 10px 0;
 }
-.form input, .form button, .form select {
+
+.tab:hover {
+    background-color: gray;
+    color: #fff;
+    border-radius: 0 10px 0 10px;
+}
+
+.form input,
+.form select {
     width: 100%;
-    padding: 5px;
-    margin: 10px 0;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
     box-sizing: border-box;
 }
-.form select[name="usertype"], select[name="office"], select option[value="officedesignation"]{
-    color:gray;
+
+.form button {
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4%;
+    font-size: 14px;
+    cursor: pointer;
 }
-.form option{
-    color:black;
+
+.form select[name="usertype"],
+select[name="office"],
+select option[value="officedesignation"] {
+    color: gray;
 }
+
+.form option {
+    color: black;
+}
+
 .form button {
     background-color: #0a488a;
     color: #fff;
@@ -84,10 +108,11 @@ label {
     font-size: 12px;
 }
 
-h2{
+h2 {
     margin-top: 20px;
     font-size: 18px;
     font-weight: 700;
+    margin: 20px;
 }
 
 @media (max-width: 768px) {
@@ -106,7 +131,8 @@ h2{
         width: 90%;
     }
 
-    .form input, .form button {
+    .form input,
+    .form button {
         font-size: 14px;
     }
 
@@ -115,30 +141,37 @@ h2{
         padding: 8px;
     }
 }
-label{
+
+label {
     align-items: center;
     font-size: 14px;
     margin-right: 150px;
 }
-input[type="checkbox"]{
-margin-right: -100px;
+
+input[type="checkbox"] {
+    margin-right: -100px;
 }
+
 .guest-viewing {
     margin-top: 20px;
     font-size: 14px;
 }
+
 .guest-viewing a {
     color: #1963b3;
     text-decoration: none;
 }
+
 .guest-viewing a:hover {
     text-decoration: underline;
 }
-.or{
-    color:gray;
-    margin-top:-20px;
+
+.or {
+    color: gray;
+    margin-top: -20px;
 }
-footer{
+
+footer {
     text-align: right;
     padding: 5px;
     color: gray;
@@ -180,7 +213,7 @@ footer{
 }
 
 
-.modal-body .container  {
-    padding: 10px;   
+.modal-body .container {
+    padding: 10px;
     font-size: 14px;
 }

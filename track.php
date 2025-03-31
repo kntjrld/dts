@@ -177,8 +177,8 @@
         function openModal(row) {
             document.getElementById('modalTrackingNumber').textContent = row.tracking_number;
             document.getElementById('modalDocumentTitle').textContent = row.document_title;
-            document.getElementById('modalDeadline').textContent = row.deadline || 'N/A'; // Handle missing deadlines
-            document.getElementById('modalPriorityStatus').textContent = row.priority_status || 'Normal';
+            document.getElementById('modalDeadline').textContent = row.deadline;
+            document.getElementById('modalPriorityStatus').textContent = row.priority_status;
             document.getElementById('modalOriginatingOffice').textContent = row.document_origin;
 
             // Show the modal

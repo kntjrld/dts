@@ -8,7 +8,7 @@ $(document).ready(function () {
             admin: true
         },
         success: function (response) {
-            const destinationSelect = $('#office');
+            const destinationSelect = $('#getOffice');
             response.forEach(off => {
                 const option = $('<option></option>').attr('value', off.office_name).text(off.office_name);
                 destinationSelect.append(option);
@@ -196,8 +196,8 @@ function checkUserExists(field, value) {
                 if (field === 'username') {
                     $('#CreateUserForm').addClass('is-invalid');
                     $('#CreateUserForm').next('.invalid-feedback').text("Warning: " + response.message).show();
-                    $('#username').val('');
-                    $('#username').focus();
+                    $('.username').val('');
+                    $('.username').focus();
                 } else if (field === 'email') {
                     $('#CreateUserForm').addClass('is-invalid');
                     $('#CreateUserForm').next('.invalid-feedback').text("Warning: " + response.message).show();

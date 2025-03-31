@@ -10,24 +10,29 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch('conn/session.php')
         .then(response => response.json())
         .then(loginDetails => {
-            // Hide the preloader
             if (preloader) {
                 preloader.style.display = "none";
             }
 
-            if (loginDetails.status == 'success') {
-                // Store loginDetails to localStorage
+            console.log('Login Details:', loginDetails);
+            console.log('Current Path:', window.location.pathname);
+            var page = window.location.pathname.split('/').pop();
+
+            // Check login status
+            if (loginDetails.status === 'success') {
                 localStorage.setItem('loginDetails', JSON.stringify(loginDetails));
-                console.log(loginDetails);
+                if (page == 'index') {
+                    window.location.href = 'dashboard';
+                }
             } else {
-                console.log(loginDetails);
-                // Route to index
-                window.location.href = 'index';
+                localStorage.removeItem('loginDetails');
+                if (page != 'index') {
+                    window.location.href = 'index';
+                }
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            // Hide the preloader in case of an error
             if (preloader) {
                 preloader.style.display = "none";
             }

@@ -18,9 +18,13 @@
     <link rel="stylesheet" href="css/swalfire.css">
     <!-- default css -->
     <link rel="stylesheet" href="css/default.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
     <div class="form-container">
         <div class="form-header">
             <div class="tab" id="login-tab">Login</div>
@@ -31,12 +35,23 @@
         <div id="logo">
             <img src="media/DepED.png" class="logo">
         </div>
+        <!-- Login Form -->
         <div id="login-form" class="form">
             <h2>Login</h2>
             <form id="loginForm" name="loginForm" method="POST">
-                <input type="username" name="username" id="username" placeholder="Username" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <button type="submit" class="login" id="login">Log In</button>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login btn btn-primary" id="login">Log In</button>
                 <a href="#" class="forgot-password">Forgot Password?</a>
             </form>
         </div>
@@ -45,8 +60,13 @@
         <div id="guest-view" class="form" style="display:none;">
             <h2>Track Document</h2>
             <form id="guestForm">
-                <input type="text" id="trackingInput" placeholder="Tracking Number" required>
-                <button type="submit" id="findButton">Find</button>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+                    <input type="text" id="trackingInput" class="form-control" placeholder="Tracking Number" required>
+                </div>
+                <button type="submit" id="findButton" class="btn btn-primary">Find</button>
             </form>
         </div>
     </div>
@@ -93,6 +113,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- connection js -->
+    <script src="js/connection.js"></script>
 
     <script>
         // Toggle between login and guest forms

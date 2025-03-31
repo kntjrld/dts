@@ -9,10 +9,10 @@
     <link rel="icon" href="media/DepED logo.png">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- dashboard.css -->
-    <link rel="stylesheet" href="css/create.css">
     <!-- default.css -->
     <link rel="stylesheet" href="css/default.css">
+    <!-- dashboard.css -->
+    <link rel="stylesheet" href="css/create.css">
     <!-- swalfire.css -->
     <link rel="stylesheet" href="css/swalfire.css">
     <!-- font-awesome -->
@@ -36,33 +36,34 @@
                 <form method="POST" id="document-form">
                     <!-- Tracking Number Field -->
                     <div class="form-field">
-                        <label for="tracking_number">Tracking Number:</label>
+                        <label for="tracking_number"><i class="fas fa-hashtag"></i> Tracking Number:</label>
                         <input type="text" id="tracking_number" name="tracking_number" disabled>
                     </div>
 
                     <!-- Document Title Field -->
                     <div class="form-field">
-                        <label for="document_title">Document Title:</label>
-                        <input type="text" id="document_title" name="document_title" required>
+                        <label for="document_title"><i class="fas fa-file-alt"></i> Document Title:</label>
+                        <input type="text" id="document_title" name="document_title" placeholder="Document Title" required>
                     </div>
 
                     <!-- Document Destination Field -->
                     <div class="form-field">
-                        <label for="document_destination">Document Destination:</label>
-                        <select id="document_destination" name="document_destination" aria-placeholder="Select an Office" required>
+                        <label for="document_destination"><i class="fas fa-map-marker-alt"></i> Document Destination:</label>
+                        <select id="document_destination" name="document_destination" required>
+                            <option value="" disabled selected>Select an Office</option>
                             <!-- Options will be populated here -->
                         </select>
                     </div>
 
                     <!-- Deadline Field -->
                     <div class="form-field">
-                        <label for="deadline">Deadline:</label>
+                        <label for="deadline"><i class="fas fa-calendar-alt"></i> Deadline:</label>
                         <input type="date" id="deadline" name="deadline" required>
                     </div>
 
                     <!-- Priority Status Field -->
                     <div class="form-field">
-                        <label for="priority_status">Priority Status:</label>
+                        <label for="priority_status"><i class="fas fa-exclamation-circle"></i> Priority Status:</label>
                         <select id="priority_status" name="priority_status" required>
                             <option value="Urgent">Urgent</option>
                             <option value="High Priority">High Priority</option>
@@ -73,12 +74,14 @@
 
                     <!-- Create and Reset Buttons -->
                     <div class="form-actions">
-                        <button type="submit" id="create_button">Create</button>
-                        <button type="reset-x" id="reset_button">Reset</button>
+                        <button type="submit" id="create_button"><i class="fas fa-plus"></i> Create</button>
+                        <button type="reset" id="reset_button"><i class="fas fa-redo"></i> Reset</button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
