@@ -23,17 +23,6 @@ function displayTable(filteredData) {
     updateStatusDesign();
 }
 
-function openModal(row) {
-    document.getElementById('modalTrackingNumber').textContent = row.tracking_number;
-    document.getElementById('modalDocumentTitle').textContent = row.document_title;
-    document.getElementById('modalDeadline').textContent = row.deadline || 'N/A'; // Handle missing deadlines
-    document.getElementById('modalPriorityStatus').textContent = row.priority_status || 'Normal';
-    document.getElementById('modalOriginatingOffice').textContent = row.document_origin;
-
-    // Show the modal
-    $('#detailsModal').modal('show');
-}
-
 // Function to create the pagination links
 function createPagination(filteredData) {
     const paginationLinks = document.getElementById('paginationLinks');

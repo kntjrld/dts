@@ -122,6 +122,8 @@
     <script src="js/table.js"></script>
     <!-- Actions -->
     <script src="js/incoming.js"></script>
+    <!-- fetchRecord js -->
+    <script src="js/fetchRecord.js"></script>
 
     <script>
         let data = [];
@@ -154,6 +156,21 @@
             });
         }
 
+        // Function to open the modal
+        function openModal(row) {
+            // Populate edit modal with data using fetchByTrackingNumber
+            fetchByTrackingNumber(row.tracking_number, function(record) {
+                console.log('Record data:', record);
+                $('#modalTrackingNumber').text(record.tracking_number);
+                $('#modalDocumentTitle').text(record.document_title);
+                $('#modalDeadline').text(record.deadline);
+                $('#modalPriorityStatus').text(record.priority_status);
+                $('#modalOriginatingOffice').text(record.document_origin);
+            });
+
+            // Show the modal
+            $('#detailsModal').modal('show');
+        }
         // Initial setup
         fetchData();
     </script>

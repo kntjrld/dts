@@ -191,6 +191,22 @@
             });
         }
 
+        // Function to open the modal
+        function openModal(row) {
+            // Populate edit modal with data using fetchByTrackingNumber
+            fetchByTrackingNumber(row.tracking_number, function(record) {
+                console.log('Record data:', record);
+                $('#modalTrackingNumber').text(record.tracking_number);
+                $('#modalDocumentTitle').text(record.document_title);
+                $('#modalDeadline').text(record.deadline);
+                $('#modalPriorityStatus').text(record.priority_status);
+                $('#modalOriginatingOffice').text(record.document_origin);
+            });
+
+            // Show the modal
+            $('#detailsModal').modal('show');
+        }
+
         // Toggle between view and edit modal bodies
         $('#btnEdit').on('click', function() {
             $('#viewModalBody').addClass('d-none');
@@ -240,9 +256,11 @@
                     // Proceed with saving the changes
                     updateByTrackingNumber(trackingNumber, documentDestination, documentTitle, deadline, priorityStatus);
                     $('#detailsModal').modal('hide');
-                    fetchData(); // Refresh the table data
                     viewOnly();
                 }
+            
+                fetchData(); // Refresh the table data
+
             });
         });
 
@@ -259,7 +277,7 @@
             $('#btnEdit').removeClass('d-none');
             $('#btnDelete').removeClass('d-none');
         }
-        
+
         // Initial setup
         fetchData();
     </script>

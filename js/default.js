@@ -167,3 +167,12 @@ $('#btnDelete').on('click', function () {
         }
     });
 });
+
+// dateformatter DD-MMM-YY
+function dateFormatter(date) {
+    const dateObj = new Date(date);
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+    const year = String(dateObj.getFullYear()).slice(-2); // Get the last two digits of the year
+    return `${day}-${month}-${year}`;
+}

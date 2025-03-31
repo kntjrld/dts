@@ -100,6 +100,16 @@
                                 <div class="col-md-6 font-weight-bold">Originating Office:</div>
                                 <div class="col-md-6" id="modalOriginatingOffice"></div>
                             </div>
+                            <!-- created date -->
+                            <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Created Date:</div>
+                                <div class="col-md-6" id="modalCreatedDate"></div>
+                            </div>
+                            <!-- updated date -->
+                            <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Updated Date:</div>
+                                <div class="col-md-6" id="modalUpdatedDate"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer"></div>
@@ -112,6 +122,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/default.js"></script>
     <script src="js/table.js"></script>
+    <!-- fetchRecord js -->
+    <script src="js/fetchRecord.js"></script>
 
     <!-- Search and Pagination Script -->
     <script>
@@ -175,11 +187,17 @@
 
         // Function to open the modal
         function openModal(row) {
-            document.getElementById('modalTrackingNumber').textContent = row.tracking_number;
-            document.getElementById('modalDocumentTitle').textContent = row.document_title;
-            document.getElementById('modalDeadline').textContent = row.deadline;
-            document.getElementById('modalPriorityStatus').textContent = row.priority_status;
-            document.getElementById('modalOriginatingOffice').textContent = row.document_origin;
+            // Populate edit modal with data using fetchByTrackingNumber
+            fetchByTrackingNumber(row.tracking_number, function(record) {
+                console.log('Record data:', record);
+                $('#modalTrackingNumber').text(record.tracking_number);
+                $('#modalDocumentTitle').text(record.document_title);
+                $('#modalDeadline').text(dateFormatter(record.deadline));
+                $('#modalPriorityStatus').text(record.priority_status);
+                $('#modalOriginatingOffice').text(record.document_origin);
+                $('#modalCreatedDate').text(record.created_date);
+                $('#modalUpdatedDate').text(record.updated_date);
+            });
 
             // Show the modal
             $('#detailsModal').modal('show');
