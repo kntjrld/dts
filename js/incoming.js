@@ -15,8 +15,9 @@ $(document).ready(function () {
             cancelButtonColor: '#d33',
         }).then((result) => {
             if (result.isConfirmed) {
-                // Call the function to send the AJAX request
                 const status = 'Received';
+                // change button text to "Processing..."
+                $('#btnReceive').html('Processing...');
                 updateStatus(trackingNumber, status);
             }
         });
@@ -39,6 +40,8 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 const status = 'Rejected';
+                // change button text to "Processing..."
+                $('#btnReject').html('Processing...');
                 updateStatus(trackingNumber, status);
             }
         });
@@ -64,6 +67,11 @@ $(document).ready(function () {
                         timer: 1000,
                         showConfirmButton: false
                     }).then(function () {
+                        // reset button text to "Receive"
+                        $('#btnReceive').html('Receive');
+                        // reset button text to "Reject/Return"
+                        $('#btnReject').html('Reject/Return');
+
                         $('#detailsModal').modal('hide');
                         fetchData(); // Refresh the table data
                     });
@@ -196,9 +204,10 @@ $(document).ready(function () {
             cancelButtonColor: '#3085d6',
         }).then((result) => {
             if (result.isConfirmed) {
-                // alert(`Document with Tracking Number: ${trackingNumber} has been marked as terminal.`);
                 const terminal_flag = true;
-                updateTerminal(trackingNumber, terminal_flag);                
+                // change button text to "Processing..."
+                $('#btnMarkTerminal').html('Processing...');
+                updateTerminal(trackingNumber, terminal_flag);
             }
         });
     });
@@ -222,6 +231,8 @@ $(document).ready(function () {
                         timer: 2000,
                         showConfirmButton: false
                     }).then(function () {
+                        // reset button text to "Mark as Terminal"
+                        $('#btnMarkTerminal').html('Mark as Terminal');
                         $('#detailsModal').modal('hide');
                         fetchData(); // Refresh the table data
                     });
