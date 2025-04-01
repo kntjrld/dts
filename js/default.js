@@ -59,11 +59,13 @@ $(document).ready(function () {
                         var $fullname = $data.fullname;
                         var $office = $data.office;
                         var $position = $data.position;
+                        var $email_address = $data.email_address;
 
                         $('#username').text($username);
                         $('#fullName').text($fullname);
                         $('#office').text($office);
                         $('#position').text($position);
+                        $('#manageEmail').text($email_address);
                     });
 
                     // Show the modal

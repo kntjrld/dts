@@ -80,7 +80,7 @@
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="saveChanges">Save</button>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Modal content goes here -->
-                    <form id="CreateUserForm">
+                    <form id="UpdateUserForm">
                         <div class="form-group flex-container">
                             <label for="EditUsername">Username</label>
                             <input type="text" class="form-control EditUsername" id="EditUsername" name="EditUsername" placeholder="Enter Unique username" required>
@@ -134,7 +134,7 @@
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveChanges">Update changes</button>
+                    <button type="button" class="btn btn-primary" id="updateChanges">Update</button>
                 </div>
             </div>
         </div>

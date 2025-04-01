@@ -273,6 +273,65 @@ document.getElementById('saveChanges').addEventListener('click', function () {
     }
 });
 
+//updateChanges button in modal
+document.getElementById('updateChanges').addEventListener('click', function () {
+    const form = document.getElementById('UpdateUserForm');
+    const saveButton = document.getElementById('updateChanges');
+    if (form.checkValidity()) {
+        const formData = {
+            username: form.EditUsername.value,
+            fullname: form.EditFullname.value,
+            email: form.EditEmail.value,
+            office: form.EditOffice.value,
+            position: form.EditPosition.value,
+            user_type: form.EditUser_type.value
+        };
+        // Show loading indicator
+        saveButton.disabled = true;
+        saveButton.innerHTML = 'Updating...';
+
+        // Send form data to the server using AJAX
+        $.ajax({
+            url: 'conn/create_user.php', // Change this to your server-side script
+            method: 'POST',
+            data: formData,
+            success: function (response) {
+                response = JSON.parse(response);
+                console.log('Form Data Updated:', response);
+                if (response.status === "updated") {
+                    // Hide loading indicator
+                    saveButton.disabled = false;
+                    saveButton.innerHTML = 'Save changes';
+
+                    Swal.fire({
+                        title: response.message,
+                        icon: "success",
+                        timer: 2000
+                    }).then(function () {
+                        $('#editUserModal').modal('hide');
+                        fetchData(); // Refresh the table data
+                    });
+                } else {
+                    // Hide loading indicator
+                    saveButton.disabled = false;
+                    saveButton.innerHTML = 'Save changes';
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Update Failed',
+                        text: response.message,
+                        confirmButtonText: 'Try Again'
+                    });
+                }
+            },
+            error: function (error) {
+                console.error('Error updating form data:', error);
+            }
+        });
+    } else {
+        form.reportValidity();
+    }
+});
+
 // Function to edit user
 function editUser(username) {
     // Implement the logic to edit the user with the given username

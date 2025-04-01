@@ -52,6 +52,13 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-1">
+                            <i class="fa-solid fa-envelope"></i> <!-- Icon for Email -->
+                        </div>
+                        <div class="col-md-3 font-weight-bold">Email:</div>
+                        <div class="col-md-6" id="manageEmail"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-building"></i> <!-- Icon for Office -->
                         </div>
                         <div class="col-md-3 font-weight-bold">Office:</div>
