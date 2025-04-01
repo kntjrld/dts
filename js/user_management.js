@@ -1,25 +1,3 @@
-$(document).ready(function () {
-    // Fetch document destinations from the server
-    $.ajax({
-        url: 'conn/manage_db.php',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            admin: true
-        },
-        success: function (response) {
-            const destinationSelect = $('#getOffice');
-            response.forEach(off => {
-                const option = $('<option></option>').attr('value', off.office_name).text(off.office_name);
-                destinationSelect.append(option);
-            });
-        },
-        error: function (error) {
-            console.error('Error fetching destinations:', error);
-        }
-    });
-});
-
 function generatePassword(length = 8) {
     const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const charactersLength = characters.length;
@@ -299,6 +277,48 @@ document.getElementById('saveChanges').addEventListener('click', function () {
 function editUser(username) {
     // Implement the logic to edit the user with the given username
     console.log('Edit user with username:', username);
+    // alert('Edit user with username: ' + username);
+    $.ajax({
+        url: 'conn/users_db.php', // Backend script to fetch user data
+        type: 'POST',
+        data: { username: username },
+        success: function (response) {
+            const result = JSON.parse(response);
+
+            if (result.status === 'success') {
+                // Populate the modal fields with the user data
+                openEditUserModal(result.data);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: result.message,
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching user data:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to fetch user data.',
+            });
+        },
+    });
+}
+
+// Open Edit User Modal and Populate Fields
+function openEditUserModal(userData) {
+    // Populate modal fields with user data
+    $('#EditUsername').val(userData.username).prop('readonly', true);;
+    $('#EditFullname').val(userData.fullname);
+    $('#EditEmail').val(userData.email_address);
+    $('#EditOffice').val(userData.office);
+    $('#EditUser_type').val(userData.user_type);
+    $('#EditPosition').val(userData.position);
+
+    // Show the modal
+    $('#editUserModal').modal('show');
 }
 
 // Function to delete user
@@ -346,3 +366,31 @@ function deleteUser(username) {
         }
     });
 }
+
+$(document).ready(function () {
+    // Fetch document destinations from the server
+    $.ajax({
+        url: 'conn/manage_db.php',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            admin: true
+        },
+        success: function (response) {
+            const destinationSelect = $('#getOffice');
+            response.forEach(off => {
+                const option = $('<option></option>').attr('value', off.office_name).text(off.office_name);
+                destinationSelect.append(option);
+            });
+
+            const editDestinationSelect = $('#EditOffice');
+            response.forEach(off => {
+                const option = $('<option></option>').attr('value', off.office_name).text(off.office_name);
+                editDestinationSelect.append(option);
+            });
+        },
+        error: function (error) {
+            console.error('Error fetching destinations:', error);
+        }
+    });
+});

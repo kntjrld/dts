@@ -14,4 +14,25 @@ if (isset($_POST['admin'])){
     echo json_encode($data);
 }
 
+
+//find by username
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $cursor = $collection->findOne(['username' => $username]);
+
+    if ($cursor) {
+        // Extract only the necessary fields
+        $user = [
+            'username' => $cursor['username'],
+            'fullname' => $cursor['fullname'],
+            'email_address' => $cursor['email_address'],
+            'office' => $cursor['office'],
+            'user_type' => $cursor['user_type'],
+            'position' => $cursor['position']
+        ];
+        echo json_encode(['status' => 'success', 'data' => $user]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'User not found']);
+    }
+}
 ?>

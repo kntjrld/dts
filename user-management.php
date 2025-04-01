@@ -80,12 +80,66 @@
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- <div class="modal-header"> -->
+                <div class="modal-header bg-primary text-white">
+                    <h6 class="modal-title" id="customModalLabel">Create User</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Modal content goes here -->
+                    <form id="CreateUserForm">
+                        <div class="form-group flex-container">
+                            <label for="EditUsername">Username</label>
+                            <input type="text" class="form-control EditUsername" id="EditUsername" name="EditUsername" placeholder="Enter Unique username" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="EditFullname">Fullname</label>
+                            <input type="text" class="form-control" id="EditFullname" name="EditFullname" placeholder="Enter Fullname" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="EditEmail">Email Address</label>
+                            <input type="email" class="form-control" id="EditEmail" name="EditEmail" placeholder="Enter Email Address" required>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="EditOffice">Office</label>
+                            <select class="form-control" id="EditOffice" name="EditOffice" required>
+                                <option value="" disabled selected>Select Office</option>
+                                <!-- Options will be populated here -->
+                            </select>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="EditUser_type">User type</label>
+                            <select class="form-control" id="EditUser_type" name="EditUser_type" required>
+                                <option value="" disabled selected>Select User Type</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+                        <div class="form-group flex-container">
+                            <label for="EditPosition">Position</label>
+                            <input type="text" class="form-control" id="EditPosition" name="EditPosition" placeholder="Enter Position" required>
+                        </div>
+                    </form>
+                    <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveChanges">Update changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="content">
         <div class="container">
             <div class="container-header">
