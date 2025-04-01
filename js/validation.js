@@ -27,7 +27,6 @@ function generateTrackingNumber() {
     }
     var nextNumber = nextNumberGenerator();
     if (validateTrackingNumber(tracking_number)) {
-        alert(tracking_number + " already exists");
         tracking_number = generateTrackingNumber();
     }
     return tracking_number;
@@ -47,7 +46,7 @@ function validateTrackingNumber(tracking_number) {
             response = JSON.parse(response);
             if (response.status === "success") {
                 result = false;
-            }else{
+            } else {
                 result = true;
             }
         }

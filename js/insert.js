@@ -48,11 +48,23 @@ $(document).ready(function () {
 
 // reset form
 function resetForm() {
-    $('#document-form').trigger('reset');
     $('#tracking_number').val(generateTrackingNumber());
+
+    // Clear all other fields except the tracking number
+    $('#document_title').val('');
+    $('#document_destination').val('');
+    $('#deadline').val('');
+    $('#priority_status').val('');
 }
 
-// reset form onclick
+// Intercept the reset event to regenerate the tracking number
+$('#document-form').on('reset', function () {
+    setTimeout(() => {
+        $('#tracking_number').val(generateTrackingNumber());
+    }, 0); // Delay to ensure the reset happens first
+});
+
+// Reset form on button click
 $('#reset_button').click(function () {
     resetForm();
 });
