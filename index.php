@@ -191,8 +191,12 @@
             event.preventDefault();
         });
 
-        //footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElement = document.getElementById('year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        });
     </script>
 
     <footer>

@@ -78,11 +78,27 @@ function filterData() {
 }
 
 // Event listener for search input
-document.getElementById('searchInput').addEventListener('keyup', function() {
+document.getElementById('searchInput').addEventListener('keyup', function () {
     currentPage = 1; // Reset to the first page on new search
     const filteredData = filterData();
     displayTable(filteredData);
     createPagination(filteredData);
+});
+
+// change status design for Pending, Approved and Rejected 
+$(document).ready(function () {
+    // Initial update
+    updateStatusDesign();
+
+    // Update status design after search
+    $('#searchInput').on('keyup', function () {
+        updateStatusDesign();
+    });
+
+    // Update status design pagination
+    $('.pagination').on('click', function () {
+        updateStatusDesign();
+    });
 });
 
 // Change status design for Pending, Approved and Rejected

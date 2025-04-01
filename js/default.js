@@ -120,22 +120,6 @@ function toggleNav() {
     }
 }
 
-// change status design for Pending, Approved and Rejected 
-$(document).ready(function () {
-    // Initial update
-    updateStatusDesign();
-
-    // Update status design after search
-    $('#searchInput').on('keyup', function () {
-        updateStatusDesign();
-    });
-
-    // Update status design pagination
-    $('.pagination').on('click', function () {
-        updateStatusDesign();
-    });
-});
-
 // User fullname tumbnail for replace dropdown : Ex: Kent Abulag -> KA
 function getThumbnail(fullname) {
     var name = fullname.split(' ');

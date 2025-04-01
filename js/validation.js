@@ -27,6 +27,7 @@ function generateTrackingNumber() {
     }
     var nextNumber = nextNumberGenerator();
     if (validateTrackingNumber(tracking_number)) {
+        alert(tracking_number + " already exists");
         tracking_number = generateTrackingNumber();
     }
     return tracking_number;
@@ -36,7 +37,7 @@ function generateTrackingNumber() {
 function validateTrackingNumber(tracking_number) {
     var result = false;
     $.ajax({
-        url: 'conn/validate',
+        url: 'conn/validation',
         type: 'POST',
         async: false,
         data: {
@@ -45,9 +46,9 @@ function validateTrackingNumber(tracking_number) {
         success: function (response) {
             response = JSON.parse(response);
             if (response.status === "success") {
-                result = true;
-            }else{
                 result = false;
+            }else{
+                result = true;
             }
         }
     });
