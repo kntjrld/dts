@@ -36,9 +36,9 @@
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
-                <label for="searchInput">Tracking Number:</label>
+                <label for="searchInput">Search info:</label>
                 <div class="input-group">
-                    <input class="searchInput" id="searchInput" type="text" placeholder="&#xf002;">
+                    <input class="searchInput" id="searchInput" type="text" placeholder="Search">
                 </div>
             </div>
             <div class="table-container">
@@ -102,8 +102,20 @@
                                 <div class="col-md-6" id="modalPriorityStatus"></div>
                             </div>
                             <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Status:</div>
+                                <div class="col-md-6" id="modalStatus"></div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6 font-weight-bold">Originating Office:</div>
                                 <div class="col-md-6" id="modalOriginatingOffice"></div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Destination Office:</div>
+                                <div class="col-md-6" id="modalDestinationOffice"></div>
+                            </div>
+                            <div class="row mb-3 d-none">
+                                <div class="col-md-6 font-weight-bold">Remarks:</div>
+                                <div class="col-md-6" id="modalRemarks"></div>
                             </div>
                         </div>
                     </div>
@@ -200,7 +212,17 @@
                 $('#modalDocumentTitle').text(record.document_title);
                 $('#modalDeadline').text(record.deadline);
                 $('#modalPriorityStatus').text(record.priority_status);
+                $('#modalStatus').text(record.status);
                 $('#modalOriginatingOffice').text(record.document_origin);
+                $('#modalDestinationOffice').text(record.document_destination);
+                $('#modalRemarks').text(record.remarks);
+
+                // modalRemarks display if not null
+                if (record.remarks == null) {
+                    $('#modalRemarks').parent().addClass('d-none');
+                } else {
+                    $('#modalRemarks').parent().removeClass('d-none');
+                }
             });
 
             // Show the modal
@@ -254,11 +276,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Proceed with saving the changes
-                    updateByTrackingNumber(trackingNumber, documentDestination, documentTitle, deadline, priorityStatus);
+                    updateByTrackingNumber(trackingNumber, documentDestination, documentTitle, deadline,
+                        priorityStatus);
                     $('#detailsModal').modal('hide');
                     viewOnly();
                 }
-            
+
                 fetchData(); // Refresh the table data
 
             });

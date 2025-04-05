@@ -18,44 +18,63 @@ $(document).ready(function () {
                 const status = 'Received';
                 // change button text to "Processing..."
                 $('#btnReceive').html('Processing...');
-                updateStatus(trackingNumber, status);
+                updateStatus(trackingNumber, status, null);
             }
         });
     });
 
-    // Handle "Reject/Return" button click
     $('#btnReject').click(function () {
         const trackingNumber = $('#modalTrackingNumber').text();
-
-        // Show confirmation dialog
+    
+        // Hide the Bootstrap modal
+        $('#detailsModal').modal('hide');
+    
+        // Show SweetAlert2 modal
         Swal.fire({
             title: 'Are you sure?',
             text: `Do you want to reject/return the document with Tracking Number: ${trackingNumber}?`,
             icon: 'warning',
+            input: 'text',
+            inputLabel: 'Reason for rejection/return',
+            inputPlaceholder: 'Enter the reason here...',
+            inputAttributes: {
+                'aria-label': 'Type your reason here'
+            },
             showCancelButton: true,
             confirmButtonText: 'Yes, Reject it!',
             cancelButtonText: 'Cancel',
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
+            inputValidator: (value) => {
+                if (!value.trim()) { // Ensure the input is not empty or just whitespace
+                    return 'You need to enter a reason!';
+                }
+                return null; // Return null if validation passes
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 const status = 'Rejected';
-                // change button text to "Processing..."
+                const reason = result.value; // Capture the input value
+                // Change button text to "Processing..."
                 $('#btnReject').html('Processing...');
-                updateStatus(trackingNumber, status);
+                updateStatus(trackingNumber, status, reason); // Pass the reason to the updateStatus function
             }
+    
+            // Reopen the Bootstrap modal after SweetAlert2 is closed
+            $('#detailsModal').modal('show');
         });
     });
 
     // receive or reject/return document ajax request
     // Function to send the AJAX request for receiving the document
-    function updateStatus(trackingNumber, status) {
+    function updateStatus(trackingNumber, status, reason) {
         $.ajax({
             url: 'conn/update.php',
             method: 'POST',
             data: {
                 tracking_number: trackingNumber,
-                status: status
+                status: status,
+                remarks: reason
             },
             success: function (response) {
                 const data = JSON.parse(response); // Parse the JSON response

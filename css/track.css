@@ -49,16 +49,11 @@
 
   /* id searchInput */
   #searchInput {
-    width: 100%;
+    width: 25%;
     padding: 5px;
     font-size: 11px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    font-family: "FontAwesome", "Roboto";
-  }
-
-  #searchInput:focus {
-    font-family: "Sans-serif";
   }
 
   /* btn-action */

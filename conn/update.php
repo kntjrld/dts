@@ -9,15 +9,17 @@ $collection = $database->selectCollection('documents');
 // update document status
 if (
     isset($_POST['tracking_number']) &&
-    isset($_POST['status'])
+    isset($_POST['status']) &&
+    isset($_POST['remarks'])
 ) {
     $tracking_number = $_POST['tracking_number'];
     $status = $_POST['status'];
     $updated_date = date('Y-m-d H:i:s');
+    $remarks = isset($_POST['remarks']) ? $_POST['remarks'] : ''; // Optional field
 
     $document = $collection->updateOne(
         ['tracking_number' => $tracking_number],
-        ['$set' => ['status' => $status, 'updated_date' => $updated_date]]
+        ['$set' => ['status' => $status, 'updated_date' => $updated_date , 'remarks' => $remarks]]
     );
 
     if ($document) {

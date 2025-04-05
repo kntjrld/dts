@@ -37,8 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'office' => $office,
             'position' => $position,
             'user_type' => $user_type
-            // 'password' => $password
         ];
+        // Only update the password if it's provided
+        if (!empty($password)) {
+            $updateData['password'] = $password;
+        }
         $collection->updateOne($query, ['$set' => $updateData]);
         echo json_encode(['status' => 'updated', 'message' => 'User data updated successfully.']);
     } else {

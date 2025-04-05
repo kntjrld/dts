@@ -43,13 +43,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                        required>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
                     </div>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                        required>
                 </div>
                 <button type="submit" class="login btn btn-primary" id="login">Log In</button>
                 <a href="#" class="forgot-password">Forgot Password?</a>
@@ -72,7 +74,8 @@
     </div>
 
     <!-- Track Modal -->
-    <div class="modal fade" id="trackModal" tabindex="-1" role="dialog" aria-labelledby="trackModalLabel" aria-hidden="true">
+    <div class="modal fade" id="trackModal" tabindex="-1" role="dialog" aria-labelledby="trackModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
@@ -100,8 +103,20 @@
                             <div class="col-md-6" id="modalPriorityStatus"></div>
                         </div>
                         <div class="row mb-3">
+                            <div class="col-md-6 font-weight-bold">Status:</div>
+                            <div class="col-md-6" id="modalStatus"></div>
+                        </div>
+                        <div class="row mb-3">
                             <div class="col-md-6 font-weight-bold">Originating Office:</div>
                             <div class="col-md-6" id="modalOriginatingOffice"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 font-weight-bold">Destination Office:</div>
+                            <div class="col-md-6" id="modalDestinationOffice"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 font-weight-bold">Remarks:</div>
+                            <div class="col-md-6" id="modalRemarks"></div>
                         </div>
                     </div>
                 </div>
@@ -164,8 +179,17 @@
                         $('#modalDocumentTitle').text(response.document_title);
                         $('#modalDeadline').text(response.deadline);
                         $('#modalPriorityStatus').text(response.priority_status);
+                        $('#modalStatus').text(response.status);
                         $('#modalOriginatingOffice').text(response.document_origin);
+                        $('#modalDestinationOffice').text(response.document_destination);
+                        $('#modalRemarks').text(response.remarks);
 
+                        // modalRemarks display if not null
+                        if (response.remarks == null) {
+                            $('#modalRemarks').parent().addClass('d-none');
+                        } else {
+                            $('#modalRemarks').parent().removeClass('d-none');
+                        }
                         // Hide loading indicator
                         findButton.disabled = false;
                         findButton.innerHTML = 'Find';

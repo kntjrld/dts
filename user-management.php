@@ -128,7 +128,17 @@
                         </div>
                         <div class="form-group flex-container">
                             <label for="EditPosition">Position</label>
-                            <input type="text" class="form-control" id="EditPosition" name="EditPosition" placeholder="Enter Position" required>
+                            <input type="text" class="form-control" id="EditPosition" name="EditPosition" placeholder="Enter Position">
+                        </div>
+                        <!-- change password -->
+                        <div class="form-group flex-container">
+                            <label for="EditPassword">New Password</label>
+                            <input type="password" class="form-control" id="EditPassword" name="EditPassword" placeholder="Enter New Password">
+                        </div>
+                        <!-- confirm password -->
+                         <div class="form-group flex-container">
+                            <label for="EditConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="EditConfirmPassword" name="EditConfirmPassword" placeholder="Confirm New Password">
                         </div>
                     </form>
                     <div class="invalid-feedback" id="invalid-feedback" style="display: none;"></div>
@@ -149,9 +159,9 @@
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
-                <label for="searchInput">Search:</label>
+                <label for="searchInput">Search User:</label> 
                 <div class="input-group">
-                    <input class="searchInput" id="searchInput" type="text" placeholder="&#xf002;">
+                    <input class="searchInput" id="searchInput" type="text" placeholder="Search">
                 </div>
             </div>
             <div class="table-container">

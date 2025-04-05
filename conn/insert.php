@@ -30,6 +30,7 @@ try {
         $status = 'Pending';
         $created_date = date('Y-m-d H:i:s');
         $updated_date = null;
+        $remarks = null;
 
         $document = $collection->insertOne([
             'tracking_number' => $tracking_number,
@@ -43,7 +44,8 @@ try {
             'terminal_flag' => $terminal_flag,
             'status' => $status,
             'created_date' => $created_date,
-            'updated_date' => $updated_date
+            'updated_date' => $updated_date,
+            'remarks' => $remarks
         ]);
 
         if ($document) {

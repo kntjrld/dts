@@ -161,6 +161,23 @@ $('#email').on('blur', function () {
     }
 });
 
+//password input
+$('#EditConfirmPassword').on('blur', function () {
+    const password = $('#EditPassword').val();
+    const confirmPassword = $(this).val();
+
+    if (password !== confirmPassword) {
+        $('#EditConfirmPassword').addClass('is-invalid');
+        $('#UpdateUserForm').next('.invalid-feedback').text("Warning: Passwords do not match").show();
+        // clear the confirm password field
+        $('#EditConfirmPassword').val('');
+        $('#EditConfirmPassword').focus();
+    }else{
+        $('#UpdateUserForm').removeClass('is-invalid');
+        $('#EditConfirmPassword').next('.invalid-feedback').hide();
+    }
+});
+
 function checkUserExists(field, value) {
     $.ajax({
         url: 'conn/check_user.php',
@@ -284,7 +301,8 @@ document.getElementById('updateChanges').addEventListener('click', function () {
             email: form.EditEmail.value,
             office: form.EditOffice.value,
             position: form.EditPosition.value,
-            user_type: form.EditUser_type.value
+            user_type: form.EditUser_type.value,
+            password: form.EditPassword.value
         };
         // Show loading indicator
         saveButton.disabled = true;
