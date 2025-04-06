@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
         <!-- Dashboard for incoming, outgoing, terminal docs and total Docs -->
         <!-- Main Content -->
         <div class="main-content">
-            <h2>Dashboard</h2>
+            <h3>Dashboard</h3>
             <div class="dashboard">
                 <div class="dashboard-card">
                     <span>1</span>
@@ -42,10 +44,22 @@
                     <span>3</span>
                     <h6>Terminal Docs</h6>
                 </div>
-                <div class="dashboard-card">
+                <!-- <div class="dashboard-card">
                     <span>4</span>
                     <h6>Total Docs</h6>
+                </div> -->
+                <!-- dropdown by month year -->
+                <div class="dropdown">
+                    <!-- select -->
+                    <select id="monthYearSelect" class="form-control">
+                        <option value="all">All</option>
+                        <!-- dynamic month year -->
+                    </select>
                 </div>
+            </div>
+            <!-- Chart Section -->
+            <div class="chart-container">
+                <canvas id="dashboardChart"></canvas>
             </div>
         </div>
     </div>
@@ -56,6 +70,8 @@
     <script src="js/default.js"></script>
     <!-- connection js -->
     <script src="js/connection.js"></script>
+    <!-- chart js -->
+    <script src="js/chart.js"></script>
 </body>
 
 </html>
