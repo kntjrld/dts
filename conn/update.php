@@ -59,11 +59,12 @@ if (
     $tracking_number = $_POST['tracking_number'];
     $terminal_flag = 1;
     $incoming_flag = 0;
+    $outgoing_flag = 0;
     $updated_date = date('Y-m-d H:i:s');
 
     $document = $collection->updateOne(
         ['tracking_number' => $tracking_number],
-        ['$set' => ['terminal_flag' => $terminal_flag, 'incoming_flag' => $incoming_flag,  'updated_date' => $updated_date]]
+        ['$set' => ['terminal_flag' => $terminal_flag, 'incoming_flag' => $incoming_flag, 'outgoing_flag' => $outgoing_flag,  'updated_date' => $updated_date]]
     );
 
     if ($document) {

@@ -220,7 +220,7 @@
 
             $('#modalRemarks').text(record.remarks);
             // modalRemarks display if not null
-            if (record.remarks == null) {
+            if (record.remarks == null || record.remarks == '') {
                 $('#modalRemarks').parent().addClass('d-none');
             } else {
                 $('#modalRemarks').parent().removeClass('d-none');
