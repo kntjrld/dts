@@ -54,7 +54,50 @@
                         required>
                 </div>
                 <button type="submit" class="login btn btn-primary" id="login">Log In</button>
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <a href="#recovery" id="reset-password-link" class="forgot-password">Forgot Password?</a>
+            </form>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="reset-password-form" class="form" style="display:none;">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm" name="resetPasswordForm" method="POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="resetPasswordButton">Send Reset Code</button>
+                <!-- back -->
+                <a href="#" id="back-to-login" class="forgot-password">Back to Login</a>
+            </form>
+        </div>
+
+        <!-- Reset Password Verification Form -->
+        <div id="verify-reset-form" class="form" style="display:none;">
+            <h2>Verify Reset Code</h2>
+            <form id="verifyResetForm" name="verifyResetForm" method="POST">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="text" name="reset_code" id="reset_code" class="form-control" placeholder="Enter Reset Code" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" name="new_password" id="new_password" class="form-control" placeholder="Enter New Password" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm New Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="verifyResetButton">Reset Password</button>
+                <a href="#" id="back-to-reset" class="forgot-password">Back</a>
             </form>
         </div>
 
@@ -130,99 +173,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- connection js -->
     <script src="js/connection.js"></script>
-
-    <script>
-        // Toggle between login and guest forms
-        document.getElementById('login-tab').addEventListener('click', () => {
-            document.getElementById('login-form').style.display = 'block';
-            document.getElementById('guest-view').style.display = 'none';
-            document.getElementById('login-tab').classList.add('active');
-            document.getElementById('guest-tab').classList.remove('active');
-        });
-
-        document.getElementById('guest-tab').addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default behavior
-            document.getElementById('guest-view').style.display = 'block';
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('guest-tab').classList.add('active');
-            document.getElementById('login-tab').classList.remove('active');
-        });
-
-        // tab.active
-        document.getElementById('login-tab').classList.add('active');
-
-        const findButton = document.getElementById('findButton');
-
-        // Modal functionality
-        $('#guestForm').on('submit', function(event) {
-            event.preventDefault();
-
-            const trackingNumber = $('#trackingInput').val();
-
-            // Show loading indicator
-            findButton.disabled = true;
-            findButton.innerHTML = 'Searching...';
-
-            // Check tracking number in MongoDB
-            $.ajax({
-                url: 'conn/check_tracking.php',
-                type: 'POST',
-                data: {
-                    trackingNumber: trackingNumber
-                },
-                success: function(response) {
-                    response = JSON.parse(response);
-                    // alert(response.tracking_number);
-                    // alert(data);
-                    if (response.exists) {
-                        $('#modalTrackingNumber').text(response.tracking_number);
-                        $('#modalDocumentTitle').text(response.document_title);
-                        $('#modalDeadline').text(response.deadline);
-                        $('#modalPriorityStatus').text(response.priority_status);
-                        $('#modalStatus').text(response.status);
-                        $('#modalOriginatingOffice').text(response.document_origin);
-                        $('#modalDestinationOffice').text(response.document_destination);
-                        $('#modalRemarks').text(response.remarks);
-
-                        // modalRemarks display if not null
-                        if (response.remarks == null || response.remarks == '') {
-                            $('#modalRemarks').parent().addClass('d-none');
-                        } else {
-                            $('#modalRemarks').parent().removeClass('d-none');
-                        }
-                        // Hide loading indicator
-                        findButton.disabled = false;
-                        findButton.innerHTML = 'Find';
-
-                        $('#trackModal').modal('show');
-                    } else {
-                        // Hide loading indicator
-                        findButton.disabled = false;
-                        findButton.innerHTML = 'Find';
-
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Tracking number not found!'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Prevent default behavior for guest tab click
-        document.getElementById('guest-tab').addEventListener('click', function(event) {
-            event.preventDefault();
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-        });
-    </script>
-
+    <!-- index js -->
+    <script src="js/index.js"></script>
     <footer>
         <p>&copy; <span id="year"></span> DepED Document Tracking System. All rights reserved. </p>
     </footer>

@@ -6,8 +6,7 @@ require 'vendor/autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+    $resetCode = $_POST['reset_code'];
 
     $mail = new PHPMailer(true);
 
@@ -22,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('kentjarold57@gmail.com', 'Mailer');
+        $mail->setFrom('kentjarold57@gmail.com', 'DTS System');
         $mail->addAddress($email);
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = $subject;
+        $mail->Subject = 'Password Reset Code';
         $mail->Body = "
             <html>
             <head>
@@ -59,10 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <body>
                 <div class='email-container'>
                     <div class='email-header'>
-                        <h2>DTS System Notification</h2>
+                        <h2>Password Reset Code</h2>
                     </div>
                     <div class='email-body'>
-                        <p>$message</p>
+                        <p>Your password reset code is: <strong>$resetCode</strong></p>
+                        <p>This code will expire in 1 hour.</p>
                     </div>
                     <div class='email-footer'>
                         <p>&copy; " . date('Y') . " DTS System. All rights reserved.</p>

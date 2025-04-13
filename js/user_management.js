@@ -225,7 +225,7 @@ document.getElementById('saveChanges').addEventListener('click', function () {
             username: form.username.value,
             fullname: form.fullname.value,
             email: form.email.value,
-            office: form.office.value,
+            office: form.getOffice.value,
             position: form.position.value,
             user_type: form.user_type.value,
             password: password

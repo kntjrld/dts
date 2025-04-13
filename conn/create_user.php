@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ];
         // Only update the password if it's provided
         if (!empty($password)) {
-            $updateData['password'] = $password;
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $updateData['password'] = $hashedPassword;
         }
         $collection->updateOne($query, ['$set' => $updateData]);
         echo json_encode(['status' => 'updated', 'message' => 'User data updated successfully.']);
@@ -53,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'office' => $office,
             'position' => $position,
             'user_type' => $user_type,
-            'password' => $password
+            'password' => $password,
+            'reset_code' => null,
+            'reset_code_expiration' => null
         ];
         try {
             $result = $collection->insertOne($new_user);

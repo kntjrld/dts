@@ -1,3 +1,5 @@
+var $data = JSON.parse(localStorage.getItem('loginDetails'));
+
 // modals
 $(document).ready(function () {
     // Load the modal.html content dynamically
@@ -14,19 +16,6 @@ $(document).ready(function () {
     $.get('default/default-bar.php', function (data) {
         $sidebarContainer.html(data);
 
-/*
-        // Debugging: Check if #sideNav and its li elements exist
-        console.log('SideNav exists:', $('#sideNav').length > 0); // Should log true
-        console.log('Number of nav items:', $('#sideNav li').length); // Should log the number of li elements
-
-        // Use event delegation for dynamically loaded nav items
-        $('#sideNav').on('click', 'li', function () {
-            console.log('Clicked element:', $(this).text()); // Debugging
-            $('#sideNav li').removeClass('active'); // Remove 'active' class from all items
-            $(this).addClass('active'); // Add 'active' class to the clicked item
-            console.log('Active class added to:', $(this)); // Debugging
-        });
-*/
         const $sideNav = $('#sideNav');
         $sideNav.toggleClass('active');
         $('.content').css({
@@ -39,7 +28,6 @@ $(document).ready(function () {
 
         const $logoutDropdown = $('#user-settings');
         // set dropdown text
-        var $data = JSON.parse(localStorage.getItem('loginDetails'));
         var $userFullname = $data.fullname;
         const $thumbnail = getThumbnail($userFullname);
         $('#dropdown').html($thumbnail);
