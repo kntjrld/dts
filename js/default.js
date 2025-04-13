@@ -14,6 +14,19 @@ $(document).ready(function () {
     $.get('default/default-bar.php', function (data) {
         $sidebarContainer.html(data);
 
+/*
+        // Debugging: Check if #sideNav and its li elements exist
+        console.log('SideNav exists:', $('#sideNav').length > 0); // Should log true
+        console.log('Number of nav items:', $('#sideNav li').length); // Should log the number of li elements
+
+        // Use event delegation for dynamically loaded nav items
+        $('#sideNav').on('click', 'li', function () {
+            console.log('Clicked element:', $(this).text()); // Debugging
+            $('#sideNav li').removeClass('active'); // Remove 'active' class from all items
+            $(this).addClass('active'); // Add 'active' class to the clicked item
+            console.log('Active class added to:', $(this)); // Debugging
+        });
+*/
         const $sideNav = $('#sideNav');
         $sideNav.toggleClass('active');
         $('.content').css({
@@ -87,16 +100,6 @@ $(document).ready(function () {
                 }
             });
         });
-    });
-});
-
-// active nav
-$(document).ready(function () {
-    const $navItems = $('li');
-    $navItems.click(function () {
-        alert('clicked');
-        $navItems.removeClass('active');
-        $(this).addClass('active');
     });
 });
 

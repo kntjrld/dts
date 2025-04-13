@@ -244,11 +244,10 @@ a {
 }
 
 /* sideNav active class */
-.side-nav .active {
-  /* text color */
+/* .side-nav .active {
   color: #333;
   font-weight: 700;
-}
+} */
 
 .header_logo{
   height: auto;
