@@ -113,7 +113,7 @@
                         </div>
                         <div class="form-group flex-container">
                             <label for="EditOffice">Office</label>
-                            <select class="form-control" id="EditOffice" name="EditOffice" required>
+                            <select class="form-control" id="EditOffice" name="EditOffice" disabled>
                                 <option value="" disabled selected>Select Office</option>
                                 <!-- Options will be populated here -->
                             </select>
