@@ -24,6 +24,21 @@
         <div class="loader"></div>
     </div>
     <div id="default-container"></div>
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <!-- dashboard -->
+            <li><a href="./dashboard"><i class="fa-solid fa-home"></i> Dashboard</a></li>
+            <!-- create, track, incoming, outgoing, terminal docs, maintenance and user management -->
+            <li><a href="./create"><i class="fa-solid fa-plus"></i> Create</a></li>
+            <li class="active"><a href="./track"><i class="fa-solid fa-search"></i> Track</a></li>
+            <li><a href="./incoming"><i class="fa-solid fa-inbox"></i> Incoming</a></li>
+            <li><a href="./outgoing"><i class="fa-solid fa-paper-plane"></i> Outgoing</a></li>
+            <li><a href="./terminal-docs"><i class="fa-solid fa-archive"></i> Terminal Docs</a></li>
+            <!-- <li><a href="./maintenance"><i class="fa-solid fa-cogs"></i> Maintenance</a></li> -->
+            <li><a href="./user-management"><i class="fa-solid fa-users"></i> User Management</a></li>
+        </ul>
+    </nav>
     <!-- modals -->
     <div id="modal-container"></div>
     <div class="content">
@@ -140,48 +155,48 @@
 
     <!-- Search and Pagination Script -->
     <script>
-    let data = [];
-    const rowsPerPage = 5; // Number of rows per page
-    let currentPage = 1; // Current page
+        let data = [];
+        const rowsPerPage = 5; // Number of rows per page
+        let currentPage = 1; // Current page
 
-    // localStorage
-    var $data = JSON.parse(localStorage.getItem('loginDetails'));
-    // get and set from localStorage
-    var office = $data.office;
-    // Function to fetch data from the server
-    function fetchData() {
-        $.ajax({
-            url: 'conn/track_db.php',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                track: true,
-                office: office
-            },
-            success: function(response) {
-                data = response;
-                const filteredData = filterData();
-                displayTable(filteredData);
-                createPagination(filteredData);
-            },
-            error: function(error) {
-                console.error('Error fetching data:', error);
-            }
-        });
-    }
-    // Function to display the table rows
-    function displayTable(filteredData) {
-        const start = (currentPage - 1) * rowsPerPage;
-        const end = currentPage * rowsPerPage;
-        const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = '';
+        // localStorage
+        var $data = JSON.parse(localStorage.getItem('loginDetails'));
+        // get and set from localStorage
+        var office = $data.office;
+        // Function to fetch data from the server
+        function fetchData() {
+            $.ajax({
+                url: 'conn/track_db.php',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    track: true,
+                    office: office
+                },
+                success: function(response) {
+                    data = response;
+                    const filteredData = filterData();
+                    displayTable(filteredData);
+                    createPagination(filteredData);
+                },
+                error: function(error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        }
+        // Function to display the table rows
+        function displayTable(filteredData) {
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = currentPage * rowsPerPage;
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
 
-        // Slice the data for the current page
-        const pageData = filteredData.slice(start, end);
+            // Slice the data for the current page
+            const pageData = filteredData.slice(start, end);
 
-        pageData.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
+            pageData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
             <td>${row.document_origin}</td>
             <td>${row.document_title}</td>
             <td>
@@ -193,108 +208,108 @@
             <td>${row.document_destination}</td>
             <td>${row.priority_status}</td>
         `;
-            tableBody.appendChild(tr);
-        });
-        updateStatusDesign();
-    }
-
-    // Function to open the modal
-    function openModal(row) {
-        // Populate edit modal with data using fetchByTrackingNumber
-        fetchByTrackingNumber(row.tracking_number, function(record) {
-            console.log('Record data:', record);
-            $('#modalTrackingNumber').text(record.tracking_number);
-            $('#modalDocumentTitle').text(record.document_title);
-            $('#modalDeadline').text(dateFormatter(record.deadline));
-            $('#modalPriorityStatus').text(record.priority_status);
-            $('#modalStatus').text(record.status);
-            $('#modalOriginatingOffice').text(record.document_origin);
-            $('#modalDestinationOffice').text(record.document_destination);
-            $('#modalCreatedDate').text(record.created_date);
-            //set default if null
-            if (record.updated_date == null) {
-                $('#modalUpdatedDate').text('N/A');
-            } else {
-                $('#modalUpdatedDate').text(record.updated_date);
-            }
-
-            $('#modalRemarks').text(record.remarks);
-            // modalRemarks display if not null
-            if (record.remarks == null || record.remarks == '') {
-                $('#modalRemarks').parent().addClass('d-none');
-            } else {
-                $('#modalRemarks').parent().removeClass('d-none');
-            }
-        });
-
-        // Show the modal
-        $('#detailsModal').modal('show');
-    }
-
-    // Function to create the pagination links
-    function createPagination(filteredData) {
-        const paginationLinks = document.getElementById('paginationLinks');
-        paginationLinks.innerHTML = '';
-
-        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
-
-        // Create Previous page button
-        const prevButton = document.createElement('li');
-        prevButton.classList.add('page-item');
-        prevButton.innerHTML = `<a class="page-link" href="#" aria-label="Previous">&laquo;</a>`;
-        prevButton.onclick = () => changePage(currentPage - 1);
-        paginationLinks.appendChild(prevButton);
-
-        // Create page number buttons
-        for (let i = 1; i <= totalPages; i++) {
-            const pageButton = document.createElement('li');
-            pageButton.classList.add('page-item');
-            pageButton.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-            pageButton.onclick = () => changePage(i);
-            paginationLinks.appendChild(pageButton);
+                tableBody.appendChild(tr);
+            });
+            updateStatusDesign();
         }
 
-        // Create Next page button
-        const nextButton = document.createElement('li');
-        nextButton.classList.add('page-item');
-        nextButton.innerHTML = `<a class="page-link" href="#" aria-label="Next">&raquo;</a>`;
-        nextButton.onclick = () => changePage(currentPage + 1);
-        paginationLinks.appendChild(nextButton);
-    }
+        // Function to open the modal
+        function openModal(row) {
+            // Populate edit modal with data using fetchByTrackingNumber
+            fetchByTrackingNumber(row.tracking_number, function(record) {
+                console.log('Record data:', record);
+                $('#modalTrackingNumber').text(record.tracking_number);
+                $('#modalDocumentTitle').text(record.document_title);
+                $('#modalDeadline').text(dateFormatter(record.deadline));
+                $('#modalPriorityStatus').text(record.priority_status);
+                $('#modalStatus').text(record.status);
+                $('#modalOriginatingOffice').text(record.document_origin);
+                $('#modalDestinationOffice').text(record.document_destination);
+                $('#modalCreatedDate').text(record.created_date);
+                //set default if null
+                if (record.updated_date == null) {
+                    $('#modalUpdatedDate').text('N/A');
+                } else {
+                    $('#modalUpdatedDate').text(record.updated_date);
+                }
 
-    // Function to change the page
-    function changePage(pageNumber) {
-        const filteredData = filterData(); // Get filtered data
-        const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+                $('#modalRemarks').text(record.remarks);
+                // modalRemarks display if not null
+                if (record.remarks == null || record.remarks == '') {
+                    $('#modalRemarks').parent().addClass('d-none');
+                } else {
+                    $('#modalRemarks').parent().removeClass('d-none');
+                }
+            });
 
-        if (pageNumber < 1 || pageNumber > totalPages) return;
+            // Show the modal
+            $('#detailsModal').modal('show');
+        }
 
-        currentPage = pageNumber;
-        displayTable(filteredData);
-        createPagination(filteredData);
-    }
+        // Function to create the pagination links
+        function createPagination(filteredData) {
+            const paginationLinks = document.getElementById('paginationLinks');
+            paginationLinks.innerHTML = '';
 
-    // Function to filter data based on search input
-    function filterData() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-        return data.filter(row => {
-            return row.tracking_number.toLowerCase().includes(searchInput) ||
-                row.status.toLowerCase().includes(searchInput) ||
-                row.priority_status.toLowerCase().includes(searchInput) ||
-                row.document_title.toLowerCase().includes(searchInput);
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+            // Create Previous page button
+            const prevButton = document.createElement('li');
+            prevButton.classList.add('page-item');
+            prevButton.innerHTML = `<a class="page-link" href="#" aria-label="Previous">&laquo;</a>`;
+            prevButton.onclick = () => changePage(currentPage - 1);
+            paginationLinks.appendChild(prevButton);
+
+            // Create page number buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('li');
+                pageButton.classList.add('page-item');
+                pageButton.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                pageButton.onclick = () => changePage(i);
+                paginationLinks.appendChild(pageButton);
+            }
+
+            // Create Next page button
+            const nextButton = document.createElement('li');
+            nextButton.classList.add('page-item');
+            nextButton.innerHTML = `<a class="page-link" href="#" aria-label="Next">&raquo;</a>`;
+            nextButton.onclick = () => changePage(currentPage + 1);
+            paginationLinks.appendChild(nextButton);
+        }
+
+        // Function to change the page
+        function changePage(pageNumber) {
+            const filteredData = filterData(); // Get filtered data
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+
+            if (pageNumber < 1 || pageNumber > totalPages) return;
+
+            currentPage = pageNumber;
+            displayTable(filteredData);
+            createPagination(filteredData);
+        }
+
+        // Function to filter data based on search input
+        function filterData() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            return data.filter(row => {
+                return row.tracking_number.toLowerCase().includes(searchInput) ||
+                    row.status.toLowerCase().includes(searchInput) ||
+                    row.priority_status.toLowerCase().includes(searchInput) ||
+                    row.document_title.toLowerCase().includes(searchInput);
+            });
+        }
+
+        // Event listener for search input
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            currentPage = 1; // Reset to the first page on new search
+            const filteredData = filterData();
+            displayTable(filteredData);
+            createPagination(filteredData);
         });
-    }
 
-    // Event listener for search input
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-        currentPage = 1; // Reset to the first page on new search
-        const filteredData = filterData();
-        displayTable(filteredData);
-        createPagination(filteredData);
-    });
-
-    // Initial setup
-    fetchData();
+        // Initial setup
+        fetchData();
     </script>
 </body>
 

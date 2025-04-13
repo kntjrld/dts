@@ -1,11 +1,15 @@
-  .content .form-container {
+  .content .container {
     margin: 0 auto;
     width: auto;
   }
 
   .content h2 {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 16px;
+    /* margin-bottom: 20px; */
+    background-color:#fff;
+    padding: 10px;
+    font-weight: 700;
+    border-radius: 5px;
   }
 
   .content .form-field {

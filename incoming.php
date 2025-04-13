@@ -24,6 +24,21 @@
         <div class="loader"></div>
     </div>
     <div id="default-container"></div>
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <!-- dashboard -->
+            <li><a href="./dashboard"><i class="fa-solid fa-home"></i> Dashboard</a></li>
+            <!-- create, track, incoming, outgoing, terminal docs, maintenance and user management -->
+            <li><a href="./create"><i class="fa-solid fa-plus"></i> Create</a></li>
+            <li><a href="./track"><i class="fa-solid fa-search"></i> Track</a></li>
+            <li class="active"><a href="./incoming"><i class="fa-solid fa-inbox"></i> Incoming</a></li>
+            <li><a href="./outgoing"><i class="fa-solid fa-paper-plane"></i> Outgoing</a></li>
+            <li><a href="./terminal-docs"><i class="fa-solid fa-archive"></i> Terminal Docs</a></li>
+            <!-- <li><a href="./maintenance"><i class="fa-solid fa-cogs"></i> Maintenance</a></li> -->
+            <li><a href="./user-management"><i class="fa-solid fa-users"></i> User Management</a></li>
+        </ul>
+    </nav>
     <!-- modals -->
     <div id="modal-container"></div>
     <div class="content">

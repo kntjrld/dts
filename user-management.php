@@ -28,6 +28,21 @@
         <div class="loader"></div>
     </div>
     <div id="default-container"></div>
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <!-- dashboard -->
+            <li><a href="./dashboard"><i class="fa-solid fa-home"></i> Dashboard</a></li>
+            <!-- create, track, incoming, outgoing, terminal docs, maintenance and user management -->
+            <li><a href="./create"><i class="fa-solid fa-plus"></i> Create</a></li>
+            <li><a href="./track"><i class="fa-solid fa-search"></i> Track</a></li>
+            <li><a href="./incoming"><i class="fa-solid fa-inbox"></i> Incoming</a></li>
+            <li><a href="./outgoing"><i class="fa-solid fa-paper-plane"></i> Outgoing</a></li>
+            <li><a href="./terminal-docs"><i class="fa-solid fa-archive"></i> Terminal Docs</a></li>
+            <!-- <li><a href="./maintenance"><i class="fa-solid fa-cogs"></i> Maintenance</a></li> -->
+            <li class="active"><a href="./user-management"><i class="fa-solid fa-users"></i> User Management</a></li>
+        </ul>
+    </nav>
     <!-- modals -->
     <div id="modal-container"></div>
     <!-- Custom Modal -->
@@ -136,7 +151,7 @@
                             <input type="password" class="form-control" id="EditPassword" name="EditPassword" placeholder="Enter New Password">
                         </div>
                         <!-- confirm password -->
-                         <div class="form-group flex-container">
+                        <div class="form-group flex-container">
                             <label for="EditConfirmPassword">Confirm Password</label>
                             <input type="password" class="form-control" id="EditConfirmPassword" name="EditConfirmPassword" placeholder="Confirm New Password">
                         </div>
@@ -159,7 +174,7 @@
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
-                <label for="searchInput">Search User:</label> 
+                <label for="searchInput">Search User:</label>
                 <div class="input-group">
                     <input class="searchInput" id="searchInput" type="text" placeholder="Search">
                 </div>

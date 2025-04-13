@@ -36,40 +36,40 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-2 col-md-1 text-center">
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-user"></i> <!-- Icon for Username -->
                         </div>
-                        <div class="col-4 col-md-3 font-weight-bold">Username:</div>
-                        <div class="col-6" id="username"></div>
+                        <div class="col-md-3 font-weight-bold">Username:</div>
+                        <div class="col-md-6" id="username"></div>
                     </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-2 col-md-1 text-center">
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-id-card"></i> <!-- Icon for Full Name -->
                         </div>
-                        <div class="col-4 col-md-3 font-weight-bold">Full Name:</div>
-                        <div class="col-6" id="fullName"></div>
+                        <div class="col-md-3 font-weight-bold">Full Name:</div>
+                        <div class="col-md-6" id="fullName"></div>
                     </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-2 col-md-1 text-center">
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-envelope"></i> <!-- Icon for Email -->
                         </div>
-                        <div class="col-4 col-md-3 font-weight-bold">Email:</div>
-                        <div class="col-6" id="manageEmail"></div>
+                        <div class="col-md-3 font-weight-bold">Email:</div>
+                        <div class="col-md-6" id="manageEmail"></div>
                     </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-2 col-md-1 text-center">
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-building"></i> <!-- Icon for Office -->
                         </div>
-                        <div class="col-4 col-md-3 font-weight-bold">Office:</div>
-                        <div class="col-6" id="office"></div>
+                        <div class="col-md-3 font-weight-bold">Office:</div>
+                        <div class="col-md-6" id="office"></div>
                     </div>
-                    <div class="row mb-3 align-items-center">
-                        <div class="col-2 col-md-1 text-center">
+                    <div class="row mb-3">
+                        <div class="col-md-1">
                             <i class="fa-solid fa-briefcase"></i> <!-- Icon for Position -->
                         </div>
-                        <div class="col-4 col-md-3 font-weight-bold">Position:</div>
-                        <div class="col-6" id="position"></div>
+                        <div class="col-md-3 font-weight-bold">Position:</div>
+                        <div class="col-md-6" id="position"></div>
                     </div>
                 </div>
             </div>
