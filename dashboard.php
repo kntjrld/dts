@@ -48,21 +48,35 @@
             <h3>Dashboard</h3>
             <div class="dashboard">
                 <div class="dashboard-card">
-                    <span>1</span>
-                    <h6>Incoming</h6>
+                    <div class="dashboard-content">
+                        <span>1</span>
+                        <h6>Incoming</h6>
+                    </div>
+                    <!-- graph icon -->
+                    <div class="dashboard-icon">
+                        <img src="media/bar1.png" class="incoming_bar">
+                    </div>
                 </div>
                 <div class="dashboard-card">
-                    <span>2</span>
-                    <h6>Outgoing</h6>
+                    <div class="dashboard-content">
+                        <span>2</span>
+                        <h6>Outgoing</h6>
+                    </div>
+                    <!-- graph icon -->
+                    <div class="dashboard-icon">
+                        <img src="media/bar2.png" class="outgoing_bar">
+                    </div>
                 </div>
                 <div class="dashboard-card">
-                    <span>3</span>
-                    <h6>Terminal Docs</h6>
+                    <div class="dashboard-content">
+                        <span>3</span>
+                        <h6>Terminal</h6>
+                    </div>
+                    <!-- graph icon -->
+                    <div class="dashboard-icon">
+                        <img src="media/bar2.png" class="terminal_bar">
+                    </div>
                 </div>
-                <!-- <div class="dashboard-card">
-                    <span>4</span>
-                    <h6>Total Docs</h6>
-                </div> -->
                 <!-- dropdown by month year -->
                 <div class="dropdown">
                     <!-- select -->
