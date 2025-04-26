@@ -25,14 +25,14 @@
     width: 100%;
     text-align: left;
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 10px;
   }
 
   .content .form-field input,
   .content .form-field select {
     padding: 10px;
-    font-size: 14px;
+    font-size: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: border-color 0.3s ease;

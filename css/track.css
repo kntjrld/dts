@@ -137,3 +137,52 @@
     cursor: pointer;
     /* Show pointer cursor */
   }
+
+  /* CSS for Dot Tracking Line */
+  .tracking-timeline {
+    position: relative;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  .tracking-timeline ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .tracking-timeline li {
+    position: relative;
+    margin-bottom: 5px;
+    padding-left: 20px;
+  }
+
+  .tracking-timeline li:last-child::after {
+    display: none;
+  }
+
+  .timeline-content {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .timeline-content .dot {
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #007bff;
+    border-radius: 50%;
+  }
+
+  .timeline-content .details {
+    margin-left: 10px;
+  }
+
+  .timeline-content{
+    font-size: 10px;
+  }
+
+  .timeline-content h6{
+    font-size: 12px;
+  }

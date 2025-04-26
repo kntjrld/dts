@@ -128,6 +128,33 @@ a {
   text-align: center;
 }
 
+.btn-link{
+  font-size: 12px;
+  padding: 10px;
+  font-weight: 400;
+  }
+
+  #modalDocumentTitle{
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  #modalTrackingNumber{
+    font-size: 18px;
+  }
+
+.btn-link:hover{
+  text-decoration: none !important;
+}
+
+.modal-body .container .row{
+  font-size: 12px;
+  padding: 5px;
+  /* decoration to remove */
+  text-decoration: none;
+}
+
 /* Side navigation styles */
 .side-nav {
   position: absolute;

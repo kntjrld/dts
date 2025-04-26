@@ -88,7 +88,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="detailsModalLabel">Document Details</h5>
+                        <h5 class="modal-title" id="modalTrackingNumber">Document Details</h5>
                         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -96,47 +96,50 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Tracking Number:</div>
-                                <div class="col-md-6" id="modalTrackingNumber"></div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Document Title:</div>
                                 <div class="col-md-6" id="modalDocumentTitle"></div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Deadline:</div>
-                                <div class="col-md-6" id="modalDeadline"></div>
+                            <div class="row">
+                                <div class="col font-weight-bold">Created Date:</div>
+                                <div class="col" id="modalCreatedDate"></div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Priority Status:</div>
-                                <div class="col-md-6" id="modalPriorityStatus"></div>
+                            <div class="row">
+                                <div class="col font-weight-bold">Updated Date:</div>
+                                <div class="col" id="modalUpdatedDate"></div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Status:</div>
-                                <div class="col-md-6" id="modalStatus"></div>
+                            <!-- Dropdown for Additional Details -->
+                            <div class="row">
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#additionalDetails" aria-expanded="false" aria-controls="additionalDetails">
+                                    <i class="fa-solid fa-info-circle"></i> View Additional Details
+                                </a>
+                                <!-- Dropdown for Originating and Destination Office -->
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#officeDetails" aria-expanded="false" aria-controls="officeDetails">
+                                    <i class="fa-solid fa-map-marker-alt"></i> Track Details
+                                </a>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Originating Office:</div>
-                                <div class="col-md-6" id="modalOriginatingOffice"></div>
+                            <div class="collapse" id="additionalDetails">
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Deadline:</div>
+                                    <div class="col-md-6" id="modalDeadline"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Priority Status:</div>
+                                    <div class="col-md-6" id="modalPriorityStatus"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Status:</div>
+                                    <div class="col-md-6" id="modalStatus"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Remarks:</div>
+                                    <div class="col-md-6" id="modalRemarks"></div>
+                                </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Destination Office:</div>
-                                <div class="col-md-6" id="modalDestinationOffice"></div>
-                            </div>
-                            <!-- created date -->
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Created Date:</div>
-                                <div class="col-md-6" id="modalCreatedDate"></div>
-                            </div>
-                            <!-- updated date -->
-                            <div class="row mb-3">
-                                <div class="col-md-6 font-weight-bold">Updated Date:</div>
-                                <div class="col-md-6" id="modalUpdatedDate"></div>
-                            </div>
-                            <!-- remarks -->
-                            <div class="row mb-3 d-none">
-                                <div class="col-md-6 font-weight-bold">Remarks:</div>
-                                <div class="col-md-6" id="modalRemarks"></div>
+                            <div class="collapse" id="officeDetails">
+                                <div class="tracking-timeline">
+                                    <ul id="trackingTimeline">
+                                        <!-- Timeline entries will be dynamically populated here -->
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,6 +158,18 @@
 
     <!-- Search and Pagination Script -->
     <script>
+        // Ensure only one dropdown is open at a time
+        document.querySelectorAll('[data-toggle="collapse"]').forEach(button => {
+            button.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                document.querySelectorAll('.collapse').forEach(collapse => {
+                    if (collapse.id !== target.replace('#', '') && collapse.classList.contains('show')) {
+                        $(collapse).collapse('hide');
+                    }
+                });
+            });
+        });
+
         let data = [];
         const rowsPerPage = 5; // Number of rows per page
         let currentPage = 1; // Current page
@@ -225,24 +240,34 @@
                 $('#modalStatus').text(record.status);
                 $('#modalOriginatingOffice').text(record.document_origin);
                 $('#modalDestinationOffice').text(record.document_destination);
-                $('#modalCreatedDate').text(record.created_date);
+                $('#modalCreatedDate').text(dateFormatterWithTimeStamp(record.created_date));
                 //set default if null
                 if (record.updated_date == null) {
                     $('#modalUpdatedDate').text('N/A');
                 } else {
-                    $('#modalUpdatedDate').text(record.updated_date);
+                    $('#modalUpdatedDate').text(dateFormatterWithTimeStamp(record.updated_date));
                 }
+
+                // Populate modal with sample data
+                $('#modalTrackingNumber').text("Tracking No. " + row.tracking_number);
+                $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + record.document_title);
 
                 $('#modalRemarks').text(record.remarks);
                 // modalRemarks display if not null
                 if (record.remarks == null || record.remarks == '') {
                     $('#modalRemarks').parent().addClass('d-none');
                 } else {
-                    $('#modalRemarks').parent().removeClass('d-none');
+                    populateTrackingTimeline(response);
                 }
             });
 
-            // Show the modal
+            fetch_tracking(row.tracking_number, function(response) {
+                if (response.length === 0) {
+                    $('#trackingTimeline').html('No tracking history available');
+                } else {
+                    populateTrackingTimeline(response);
+                }
+            });
             $('#detailsModal').modal('show');
         }
 

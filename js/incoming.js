@@ -1,8 +1,11 @@
 $(document).ready(function () {
+    var $data = JSON.parse(localStorage.getItem('loginDetails'));
+    var office = $data.office;
+
     // Handle "Receive" button click
     $('#btnReceive').click(function () {
         const trackingNumber = $('#modalTrackingNumber').text();
-
+        
         // Show confirmation dialog
         Swal.fire({
             title: 'Are you sure?',
@@ -18,6 +21,9 @@ $(document).ready(function () {
                 const status = 'Received';
                 // change button text to "Processing..."
                 $('#btnReceive').html('Processing...');
+                // Insert tracking record
+                insert_tracking(trackingNumber, office, 'Document Received', 'Document Received');
+
                 updateStatus(trackingNumber, status, null);
             }
         });
@@ -25,10 +31,10 @@ $(document).ready(function () {
 
     $('#btnReject').click(function () {
         const trackingNumber = $('#modalTrackingNumber').text();
-    
+
         // Hide the Bootstrap modal
         $('#detailsModal').modal('hide');
-    
+
         // Show SweetAlert2 modal
         Swal.fire({
             title: 'Are you sure?',
@@ -57,9 +63,11 @@ $(document).ready(function () {
                 const reason = result.value; // Capture the input value
                 // Change button text to "Processing..."
                 $('#btnReject').html('Processing...');
+                // Insert tracking record
+                insert_tracking(trackingNumber, office, 'Document Rejected', reason);
                 updateStatus(trackingNumber, status, reason); // Pass the reason to the updateStatus function
             }
-    
+
             // Reopen the Bootstrap modal after SweetAlert2 is closed
             $('#detailsModal').modal('show');
         });
@@ -158,6 +166,8 @@ $(document).ready(function () {
                     if (result.isConfirmed) {
                         const destination = result.value; // Get the selected destination
                         forwardDocument(trackingNumber, destination);
+                        // Insert tracking record
+                        insert_tracking(trackingNumber, office, 'Document Forwarded', `Forwarded to ${destination}`);
                     }
                 });
             }
@@ -227,6 +237,8 @@ $(document).ready(function () {
                 // change button text to "Processing..."
                 $('#btnMarkTerminal').html('Processing...');
                 updateTerminal(trackingNumber, terminal_flag);
+                // Insert tracking record
+                insert_tracking(trackingNumber, office, 'Document Marked as Terminal', 'Document Marked as Terminal');
             }
         });
     });

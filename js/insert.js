@@ -29,6 +29,11 @@ $(document).ready(function () {
                         icon: "success",
                         timer: 2000
                     }).then(function () {
+                        // localStorage
+                        var $data = JSON.parse(localStorage.getItem('loginDetails'));
+                        var office = $data.office;
+                        insert_tracking(tracking_number, office, 'Document Created', 'Initial submission');
+                        
                         // reset form
                         resetForm();
                     });
