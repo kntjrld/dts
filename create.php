@@ -87,17 +87,17 @@
                         </select>
                     </div>
 
-                    <!-- Remarks Field -->
-                    <!-- <div class="form-field">
-                        <label for="remarks"><i class="fas fa-comment-alt"></i> Remarks:</label>
-                        <input type="text" id="remarks" name="remarks" placeholder="Enter remarks here...">
-                    </div> -->
+                    <!-- Notes Field -->
+                    <div class="form-field">
+                        <label for="notes"><i class="fas fa-comment-alt"></i> Notes:</label>
+                        <input type="text" id="notes" name="notes" placeholder="Enter notes here...">
+                    </div>
 
                     <!-- Attached Link Field -->
-                    <!-- <div class="form-field">
+                    <div class="form-field">
                         <label for="attached_link"><i class="fas fa-link"></i> Attached Link:</label>
                         <input type="url" id="attached_link" name="attached_link" placeholder="https://example.com">
-                    </div> -->
+                    </div>
                     
                     <!-- Create and Reset Buttons -->
                     <div class="form-actions">

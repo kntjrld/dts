@@ -276,3 +276,15 @@ function populateTrackingTimeline(trackingHistory) {
         timeline.appendChild(li);
     });
 }
+
+// Ensure only one dropdown is open at a time
+document.querySelectorAll('[data-toggle="collapse"]').forEach(button => {
+    button.addEventListener('click', function () {
+        const target = this.getAttribute('data-target');
+        document.querySelectorAll('.collapse').forEach(collapse => {
+            if (collapse.id !== target.replace('#', '') && collapse.classList.contains('show')) {
+                $(collapse).collapse('hide');
+            }
+        });
+    });
+});

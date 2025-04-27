@@ -10,7 +10,11 @@ $(document).ready(function () {
         var document_destination = $('#document_destination').val();
         var deadline = $('#deadline').val();
         var priority_status = $('#priority_status').val();
+        var notes = $('#notes').val();
+        var attached_link = $('#attached_link').val();
 
+        console.log("inserting : " + tracking_number, document_title, document_destination, deadline, priority_status, notes, attached_link);
+        
         $.ajax({
             url: 'conn/insert',
             type: 'POST',
@@ -19,7 +23,9 @@ $(document).ready(function () {
                 document_title: document_title,
                 document_destination: document_destination,
                 deadline: deadline,
-                priority_status: priority_status
+                priority_status: priority_status,
+                notes: notes,
+                attached_link: attached_link
             },
             success: function (response) {
                 response = JSON.parse(response);

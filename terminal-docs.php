@@ -112,6 +112,10 @@
                                 <a class="btn btn-link" data-toggle="collapse" data-target="#additionalDetails" aria-expanded="false" aria-controls="additionalDetails">
                                     <i class="fa-solid fa-info-circle"></i> View Additional Details
                                 </a>
+                                <!-- Dropdown for remarks, notes, attached_link -->
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#remarksDetails" aria-expanded="false" aria-controls="remarksDetails">
+                                    <i class="fa-solid fa-comment-alt"></i> Remarks
+                                </a>
                             </div>
                             <div class="collapse" id="additionalDetails">
                                 <div class="row mb-3">
@@ -126,9 +130,21 @@
                                     <div class="col-md-6 font-weight-bold">Destination Office:</div>
                                     <div class="col-md-6" id="modalDestinationOffice"></div>
                                 </div>
-                                <div class="row mb-3 d-none">
-                                    <div class="col-md-6 font-weight-bold">Remarks:</div>
-                                    <div class="col-md-6" id="modalRemarks"></div>
+                            </div>
+                            <!-- remarksDetails -->
+                            <div class="collapse" id="remarksDetails">
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Notes:</div>
+                                    <div class="col-md-6" id="notes"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Rejected Reason:</div>
+                                    <div class="col-md-6" id="rejected_reason"></div>
+                                </div>
+                                <!-- attached link -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Attached Link:</div>
+                                    <div class="col-md-6" id="attached_link"></div>
                                 </div>
                             </div>
                         </div>
@@ -204,6 +220,16 @@
                 }
 
                 $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + record.document_title);
+
+                $('#rejected_reason').text(record.remarks);
+                $('#notes').text(record.notes == null ? 'N/A' : record.notes);
+                // if status is rejected, show rejected reason if null display none or dont show rejected reason
+                if (record.status == 'Rejected') {
+                    $('#rejected_reason').parent().removeClass('d-none');
+                } else {
+                    $('#rejected_reason').parent().addClass('d-none');
+                }
+                $('#attached_link').html(record.attached_link == null ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
             });
 
             // Show the modal

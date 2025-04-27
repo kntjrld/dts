@@ -289,6 +289,12 @@ a {
   font-weight: 700;
 }
 
+#remarksDetails a{
+  font-size: 12px;
+  /* hyperlink */
+  text-decoration:underline;
+  color: #007bff;
+}
 /* sideNav active class */
 /* .side-nav .active {
   color: #333;

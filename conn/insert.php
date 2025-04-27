@@ -31,6 +31,8 @@ try {
         $created_date = date('Y-m-d H:i:s');
         $updated_date = null;
         $remarks = null;
+        $notes = $_POST['notes'] ?? null;
+        $attached_link = $_POST['attached_link'] ?? null;
 
         $document = $collection->insertOne([
             'tracking_number' => $tracking_number,
@@ -45,7 +47,9 @@ try {
             'status' => $status,
             'created_date' => $created_date,
             'updated_date' => $updated_date,
-            'remarks' => $remarks
+            'remarks' => $remarks,
+            'notes' => $notes,
+            'attached_link' => $attached_link
         ]);
 
         if ($document) {
