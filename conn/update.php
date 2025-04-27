@@ -89,6 +89,8 @@ if (
     $deadline = $_POST['deadline'];
     $priorityStatus = $_POST['priority_status'];
     $updatedDate = date('Y-m-d H:i:s'); // Current timestamp
+    $notes = isset($_POST['notes']) ? $_POST['notes'] : null; // Optional field
+    $attachedLink = isset($_POST['attached_link']) ? $_POST['attached_link'] : null; // Optional field
 
     // Select the database and collection
     $database = $client->selectDatabase('dts_db');
@@ -102,7 +104,9 @@ if (
             'document_destination' => $documentDestination,
             'deadline' => $deadline,
             'priority_status' => $priorityStatus,
-            'updated_date' => $updatedDate
+            'updated_date' => $updatedDate,
+            'notes' => $notes,
+            'attached_link' => $attachedLink
         ]]
     );
 

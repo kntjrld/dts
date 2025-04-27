@@ -182,6 +182,16 @@
                                 <option value="Low Priority">Low Priority</option>
                             </select>
                         </div>
+                        <!-- notes -->
+                         <div class="form-field">
+                            <label for="editNotes">Notes:</label>
+                            <input type="text" id="editNotes" name="notes" class="form-control">
+                         </div>
+                         <!-- attached_link -->
+                        <div class="form-field">
+                            <label for="EditAttached_link">Attached Link:</label>
+                            <input type="text" id="EditAttached_link" name="attached_link" class="form-control">
+                        </div>
                     </div>
                     <div class="modal-footer" id="outgoingModalFooter">
                         <button type="button" class="btn btn-primary" id="btnEdit">Edit</button>
@@ -295,6 +305,8 @@
                 $('#document_destination').val(record.document_destination);
                 $('#editDeadline').val(record.deadline);
                 $('#editPriorityStatus').val(record.priority_status);
+                $('#editNotes').val(record.notes);
+                $('#EditAttached_link').val(record.attached_link);
             });
         });
 
@@ -308,6 +320,8 @@
             const documentDestination = $('#document_destination').val();
             const deadline = $('#editDeadline').val();
             const priorityStatus = $('#editPriorityStatus').val();
+            const notes = $('#editNotes').val();
+            const attachedLink = $('#EditAttached_link').val();
 
             // Show confirmation dialog
             Swal.fire({
@@ -323,7 +337,7 @@
                 if (result.isConfirmed) {
                     // Proceed with saving the changes
                     updateByTrackingNumber(trackingNumber, documentDestination, documentTitle, deadline,
-                        priorityStatus);
+                        priorityStatus, notes, attachedLink);
 
                     // Insert tracking record
                     insert_tracking(trackingNumber, office, 'Updated document details', 'Document Updated');
