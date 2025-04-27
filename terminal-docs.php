@@ -112,6 +112,10 @@
                                 <a class="btn btn-link" data-toggle="collapse" data-target="#additionalDetails" aria-expanded="false" aria-controls="additionalDetails">
                                     <i class="fa-solid fa-info-circle"></i> View Additional Details
                                 </a>
+                                <!-- Dropdown for Originating and Destination Office -->
+                                <a class="btn btn-link" data-toggle="collapse" data-target="#officeDetails" aria-expanded="false" aria-controls="officeDetails">
+                                    <i class="fa-solid fa-map-marker-alt"></i> Track Details
+                                </a>
                                 <!-- Dropdown for remarks, notes, attached_link -->
                                 <a class="btn btn-link" data-toggle="collapse" data-target="#remarksDetails" aria-expanded="false" aria-controls="remarksDetails">
                                     <i class="fa-solid fa-comment-alt"></i> Remarks
@@ -145,6 +149,13 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6 font-weight-bold">Attached Link:</div>
                                     <div class="col-md-6" id="attached_link"></div>
+                                </div>
+                            </div>
+                            <div class="collapse" id="officeDetails">
+                                <div class="tracking-timeline">
+                                    <ul id="trackingTimeline">
+                                        <!-- Timeline entries will be dynamically populated here -->
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -230,6 +241,14 @@
                     $('#rejected_reason').parent().addClass('d-none');
                 }
                 $('#attached_link').html(record.attached_link == null ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
+            });
+
+            fetch_tracking(row.tracking_number, function(response) {
+                if (response.length === 0) {
+                    $('#trackingTimeline').html('No tracking history available');
+                } else {
+                    populateTrackingTimeline(response);
+                }
             });
 
             // Show the modal

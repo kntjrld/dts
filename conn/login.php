@@ -25,6 +25,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         $_SESSION['position'] = $user['position'];
         $_SESSION['office'] = $user['office'];
         $_SESSION['email_address'] = $user['email_address'];
+        $_SESSION['user_type'] = $user['user_type'];
 
         echo json_encode(array('status' => 'success', 'message' => 'Login successful'));
     } else {
