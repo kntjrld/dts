@@ -387,13 +387,19 @@ function editUser(username) {
 // Open Edit User Modal and Populate Fields
 function openEditUserModal(userData) {
     // Populate modal fields with user data
-    $('#EditUsername').val(userData.username).prop('readonly', true);;
+    $('#EditUsername').val(userData.username).prop('readonly', true);
     $('#EditFullname').val(userData.fullname);
     $('#EditEmail').val(userData.email_address);
     $('#EditOffice').val(userData.office);
     $('#EditUser_type').val(userData.user_type);
     $('#EditPosition').val(userData.position);
 
+    //if user type is admin, disable the user type select
+    if (userData.user_type === 'Admin') {
+        $('#EditUser_type').prop('disabled', false);
+    } else {
+        $('#EditUser_type').prop('disabled', true);
+    }
     // Show the modal
     $('#editUserModal').modal('show');
 }
