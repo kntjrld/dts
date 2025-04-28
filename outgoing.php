@@ -114,7 +114,7 @@
                             <!-- Dropdown for Additional Details -->
                             <div class="row">
                                 <a class="btn btn-link" data-toggle="collapse" data-target="#additionalDetails" aria-expanded="false" aria-controls="additionalDetails">
-                                    <i class="fa-solid fa-info-circle"></i> View Additional Details
+                                    <i class="fa-solid fa-info-circle"></i> Additional Details
                                 </a>
                                 <!-- Dropdown for remarks, notes, attached_link -->
                                 <a class="btn btn-link" data-toggle="collapse" data-target="#remarksDetails" aria-expanded="false" aria-controls="remarksDetails">
