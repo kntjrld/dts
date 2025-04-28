@@ -384,6 +384,8 @@ function editUser(username) {
     });
 }
 
+var $data = JSON.parse(localStorage.getItem('loginDetails'));
+
 // Open Edit User Modal and Populate Fields
 function openEditUserModal(userData) {
     // Populate modal fields with user data
@@ -394,8 +396,10 @@ function openEditUserModal(userData) {
     $('#EditUser_type').val(userData.user_type);
     $('#EditPosition').val(userData.position);
 
+    //loginDetails user_type
+    var userType = $data.user_type;
     //if user type is admin, disable the user type select
-    if (userData.user_type === 'Admin') {
+    if (userType === 'Admin') {
         $('#EditUser_type').prop('disabled', false);
     } else {
         $('#EditUser_type').prop('disabled', true);
