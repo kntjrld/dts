@@ -148,7 +148,7 @@
                                 <!-- attached link -->
                                 <div class="row mb-3">
                                     <div class="col-md-6 font-weight-bold">Attached Link:</div>
-                                    <div class="col-md-6" id="attached_link"></div>
+                                    <div id="attached_link"></div>
                                 </div>
                             </div>
                             <div class="collapse" id="officeDetails">

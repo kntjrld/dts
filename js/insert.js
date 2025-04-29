@@ -66,6 +66,8 @@ function resetForm() {
     $('#document_destination').val('');
     $('#deadline').val('');
     $('#priority_status').val('');
+    $('#notes').val('');
+    $('#attached_link').val('');
 }
 
 // Intercept the reset event to regenerate the tracking number
