@@ -50,20 +50,28 @@ $('#guestForm').on('submit', function (event) {
             // alert(data);
             if (response.exists) {
                 $('#modalTrackingNumber').text(response.tracking_number);
-                $('#modalDocumentTitle').text(response.document_title);
+                $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + response.document_title);
                 $('#modalDeadline').text(response.deadline);
                 $('#modalPriorityStatus').text(response.priority_status);
                 $('#modalStatus').text(response.status);
                 $('#modalOriginatingOffice').text(response.document_origin);
                 $('#modalDestinationOffice').text(response.document_destination);
-                $('#modalRemarks').text(response.remarks);
 
-                // modalRemarks display if not null
-                if (response.remarks == null || response.remarks == '') {
-                    $('#modalRemarks').parent().addClass('d-none');
+                //if remarks is null 
+                if (response.status == 'Rejected') {
+                    $('#modalRemarks').text(response.remarks);
                 } else {
-                    $('#modalRemarks').parent().removeClass('d-none');
+                    $('#rejected_rsn').html('No remarks.');
                 }
+
+                fetch_tracking(response.tracking_number, function (response) {
+                    if (response.length === 0) {
+                        $('#trackingTimeline').html('No tracking history available');
+                    } else {
+                        populateTrackingTimeline(response);
+                    }
+                });
+
                 // Hide loading indicator
                 findButton.disabled = false;
                 findButton.innerHTML = 'Find';
@@ -228,4 +236,85 @@ document.addEventListener('DOMContentLoaded', function () {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
+});
+
+/**
+ * Function to fetch tracking data
+ * @param {string} trackingNumber - The tracking number of the document
+ * @param {function} callback - A callback function to handle the fetched data
+ */
+function fetch_tracking(trackingNumber, callback) {
+    console.log('Fetching tracking data for:', trackingNumber); // Debugging
+    $.ajax({
+        url: 'conn/fetch_tracking.php',
+        method: 'POST',
+        data: {
+            tracking_number: trackingNumber
+        },
+        success: function (response) {
+            console.log('Response from fetch_tracking.php:', response); // Debugging
+            try {
+                const result = JSON.parse(response);
+                if (result.status === 'success') {
+                    console.log('Tracking data fetched successfully:', result.data); // Debugging
+                    callback(result.data); // Pass the fetched data to the callback function
+                } else {
+                    console.error('Error fetching tracking data:', result.message);
+                    callback([]); // Pass an empty array if there's an error
+                }
+            } catch (error) {
+                console.error('Error parsing JSON response:', error);
+                callback([]); // Pass an empty array if JSON parsing fails
+            }
+        },
+        error: function (error) {
+            console.error('AJAX error:', error);
+            callback([]); // Pass an empty array if AJAX fails
+        }
+    });
+}
+
+/**
+ * Function to populate the tracking timeline
+ * @param {Array} trackingHistory - Array of tracking history objects
+ */
+function populateTrackingTimeline(trackingHistory) {
+    console.log('Populating tracking timeline with data:', trackingHistory); // Debugging
+    const timeline = document.getElementById('trackingTimeline');
+    timeline.innerHTML = ''; // Clear existing entries
+
+    // Check if trackingHistory is valid
+    if (!Array.isArray(trackingHistory)) {
+        console.error('Invalid trackingHistory:', trackingHistory); // Debugging
+        timeline.innerHTML = '<p>No tracking history available.</p>';
+        return;
+    }
+
+    trackingHistory.forEach(entry => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <div class="timeline-content">
+                <span class="dot"></span>
+                <div class="details">
+                    <h6>${entry.date}</h6>
+                    <p><strong>Office:</strong> ${entry.office}</p>
+                    <p><strong>Action:</strong> ${entry.action}</p>
+                    <p><strong>Remarks:</strong> ${entry.remarks || 'N/A'}</p>
+                </div>
+            </div>
+        `;
+        timeline.appendChild(li);
+    });
+}
+
+// Ensure only one dropdown is open at a time
+document.querySelectorAll('[data-toggle="collapse"]').forEach(button => {
+    button.addEventListener('click', function () {
+        const target = this.getAttribute('data-target');
+        document.querySelectorAll('.collapse').forEach(collapse => {
+            if (collapse.id !== target.replace('#', '') && collapse.classList.contains('show')) {
+                $(collapse).collapse('hide');
+            }
+        });
+    });
 });

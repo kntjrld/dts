@@ -96,7 +96,7 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row mb-3">
-                                <div class="col-md-6" id="modalDocumentTitle"></div>
+                                <div class="col" id="modalDocumentTitle"></div>
                             </div>
                             <div class="row">
                                 <div class="col font-weight-bold">Created Date:</div>

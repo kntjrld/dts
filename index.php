@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="css/swalfire.css">
     <!-- default css -->
     <link rel="stylesheet" href="css/default.css">
+    <!-- track css -->
+    <link rel="stylesheet" href="css/track.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
@@ -122,7 +126,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="trackModalLabel">Track Document Details</h5>
+                    <h5 class="modal-title" id="modalTrackingNumber">Track Document Details</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -130,36 +134,57 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Tracking Number:</div>
-                            <div class="col-md-6" id="modalTrackingNumber"></div>
+                            <div class="col" id="modalDocumentTitle"></div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Document Title:</div>
-                            <div class="col-md-6" id="modalDocumentTitle"></div>
+                        <div class="row">
+                            <div class="col font-weight-bold">Deadline:</div>
+                            <div class="col" id="modalDeadline"></div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Deadline:</div>
-                            <div class="col-md-6" id="modalDeadline"></div>
+                        <div class="row">
+                            <div class="col font-weight-bold">Originating Office:</div>
+                            <div class="col" id="modalOriginatingOffice"></div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Priority Status:</div>
-                            <div class="col-md-6" id="modalPriorityStatus"></div>
+                        <div class="row">
+                            <div class="col font-weight-bold">Destination Office:</div>
+                            <div class="col" id="modalDestinationOffice"></div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Status:</div>
-                            <div class="col-md-6" id="modalStatus"></div>
+                        <!-- Dropdown for Additional Details -->
+                        <div class="row">
+                            <a class="btn btn-link" data-toggle="collapse" data-target="#additionalDetails" aria-expanded="false" aria-controls="additionalDetails">
+                                <i class="fa-solid fa-info-circle"></i> Additional Details
+                            </a>
+                            <!-- Dropdown for Originating and Destination Office -->
+                            <a class="btn btn-link" data-toggle="collapse" data-target="#officeDetails" aria-expanded="false" aria-controls="officeDetails">
+                                <i class="fa-solid fa-map-marker-alt"></i> Track Details
+                            </a>
+                            <!-- Dropdown for remarks, notes, attached_link -->
+                            <a class="btn btn-link" data-toggle="collapse" data-target="#remarksDetails" aria-expanded="false" aria-controls="remarksDetails">
+                                <i class="fa-solid fa-comment-alt"></i> Remarks
+                            </a>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Originating Office:</div>
-                            <div class="col-md-6" id="modalOriginatingOffice"></div>
+                        <div class="collapse" id="additionalDetails">
+                            <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Status:</div>
+                                <div class="col-md-6" id="modalStatus"></div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6 font-weight-bold">Priority Status:</div>
+                                <div class="col-md-6" id="modalPriorityStatus"></div>
+                            </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Destination Office:</div>
-                            <div class="col-md-6" id="modalDestinationOffice"></div>
+                        <div class="collapse" id="officeDetails">
+                            <div class="tracking-timeline">
+                                <ul id="trackingTimeline">
+                                    <!-- Timeline entries will be dynamically populated here -->
+                                </ul>
+                            </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6 font-weight-bold">Remarks:</div>
-                            <div class="col-md-6" id="modalRemarks"></div>
+                        <!-- remarksDetails -->
+                        <div class="collapse" id="remarksDetails">
+                            <div class="row mb-3">
+                                <div id="rejected_rsn"><i class="fas fa-exclamation-triangle text-warning"></i></div>
+                                <div class="col mb-3" id="modalRemarks"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
