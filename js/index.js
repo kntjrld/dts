@@ -32,6 +32,7 @@ $('#guestForm').on('submit', function (event) {
     event.preventDefault();
 
     const trackingNumber = $('#trackingInput').val();
+    const errorMessage = document.getElementById('errorMessage');
 
     // Show loading indicator
     findButton.disabled = true;
@@ -77,16 +78,15 @@ $('#guestForm').on('submit', function (event) {
                 findButton.innerHTML = 'Find';
 
                 $('#trackModal').modal('show');
+
+                //errorMessage
+                errorMessage.textContent = ''; // Clear any previous error message
             } else {
                 // Hide loading indicator
                 findButton.disabled = false;
                 findButton.innerHTML = 'Find';
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Tracking number not found!'
-                });
+                // Display the error message
+                errorMessage.textContent = 'Tracking number not found!';
             }
         }
     });

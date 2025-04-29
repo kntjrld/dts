@@ -115,6 +115,8 @@
                     </div>
                     <input type="text" id="trackingInput" class="form-control" placeholder="Tracking Number" required>
                 </div>
+                <!-- errorMessage -->
+                <span class="errorMessage" id="errorMessage"></span>
                 <button type="submit" id="findButton" class="btn btn-primary">Find</button>
             </form>
         </div>
