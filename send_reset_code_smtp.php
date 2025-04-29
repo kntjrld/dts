@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
         $mail->SMTPAuth = true;
-        $mail->Username = 'kentjarold57@gmail.com'; // SMTP username
+        $mail->Username = base64_decode('a2VudGphcm9sZDU3QGdtYWlsLmNvbQ=='); // SMTP username (Base64 decoded)
         $mail->Password = base64_decode('bWNkeCBqbHlnIHhmcm0gaG5oYQ=='); // SMTP password (Base64 decoded)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('kentjarold57@gmail.com', 'DTS System');
+        $mail->setFrom('no-reply@dts.edu.ph', 'DTS System');
         $mail->addAddress($email);
 
         // Content
