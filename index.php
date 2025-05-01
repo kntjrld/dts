@@ -113,10 +113,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                     </div>
-                    <input type="text" id="trackingInput" class="form-control" placeholder="Tracking Number" required>
+                    <input type="text" id="trackingInput" name="trackingInput" class="form-control" placeholder="Tracking Number" required>
                 </div>
-                <!-- errorMessage -->
+                <!-- Error Message -->
                 <span class="errorMessage" id="errorMessage"></span>
+
+                <!-- Google reCAPTCHA -->
+                <div class="g-recaptcha" data-sitekey="6LcsYyorAAAAAChBJ8qUvol43X_p5wuiRfMa60pD"></div>
+
                 <button type="submit" id="findButton" class="btn btn-primary">Find</button>
             </form>
         </div>
@@ -202,6 +206,9 @@
     <script src="js/connection.js"></script>
     <!-- index js -->
     <script src="js/index.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+    </script>
     <footer>
         <p>&copy; <span id="year"></span> DepED Document Tracking System. All rights reserved. </p>
     </footer>

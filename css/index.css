@@ -224,3 +224,8 @@ footer {
     margin-top: 10px;
     display: flex;
 }
+
+.g-recaptcha {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

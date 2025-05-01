@@ -33,61 +33,93 @@ $('#guestForm').on('submit', function (event) {
 
     const trackingNumber = $('#trackingInput').val();
     const errorMessage = document.getElementById('errorMessage');
+    const captchaResponse = grecaptcha.getResponse(); // Get the CAPTCHA response
 
-    // Show loading indicator
-    findButton.disabled = true;
-    findButton.innerHTML = 'Searching...';
-
-    // Check tracking number in MongoDB
+    //conn/verify_captcha.php
+    // Verify CAPTCHA response
     $.ajax({
-        url: 'conn/check_tracking.php',
+        url: 'conn/verify_captcha.php',
         type: 'POST',
         data: {
-            trackingNumber: trackingNumber
+            captchaResponse: captchaResponse
         },
         success: function (response) {
             response = JSON.parse(response);
-            // alert(response.tracking_number);
-            // alert(data);
-            if (response.exists) {
-                $('#modalTrackingNumber').text(response.tracking_number);
-                $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + response.document_title);
-                $('#modalDeadline').text(response.deadline);
-                $('#modalPriorityStatus').text(response.priority_status);
-                $('#modalStatus').text(response.status);
-                $('#modalOriginatingOffice').text(response.document_origin);
-                $('#modalDestinationOffice').text(response.document_destination);
+            if (response.success) {
+                // Show loading indicator
+                findButton.disabled = true;
+                findButton.innerHTML = 'Searching...';
 
-                //if remarks is null 
-                if (response.status == 'Rejected') {
-                    $('#modalRemarks').text(response.remarks);
-                } else {
-                    $('#rejected_rsn').html('No remarks.');
-                }
+                // CAPTCHA verified successfully
+                console.log('CAPTCHA verified successfully');
+                $.ajax({
+                    url: 'conn/check_tracking.php',
+                    type: 'POST',
+                    data: {
+                        trackingNumber: trackingNumber
+                    },
+                    success: function (response) {
+                        response = JSON.parse(response);
+                        // alert(response.tracking_number);
+                        // alert(data);
+                        if (response.exists) {
+                            $('#modalTrackingNumber').text(response.tracking_number);
+                            $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + response.document_title);
+                            $('#modalDeadline').text(response.deadline);
+                            $('#modalPriorityStatus').text(response.priority_status);
+                            $('#modalStatus').text(response.status);
+                            $('#modalOriginatingOffice').text(response.document_origin);
+                            $('#modalDestinationOffice').text(response.document_destination);
 
-                fetch_tracking(response.tracking_number, function (response) {
-                    if (response.length === 0) {
-                        $('#trackingTimeline').html('No tracking history available');
-                    } else {
-                        populateTrackingTimeline(response);
+                            //if remarks is null 
+                            if (response.status == 'Rejected') {
+                                $('#modalRemarks').text(response.remarks);
+                            } else {
+                                $('#rejected_rsn').html('No remarks.');
+                            }
+
+                            fetch_tracking(response.tracking_number, function (response) {
+                                if (response.length === 0) {
+                                    $('#trackingTimeline').html('No tracking history available');
+                                } else {
+                                    populateTrackingTimeline(response);
+                                }
+                            });
+
+                            // Hide loading indicator
+                            findButton.disabled = false;
+                            findButton.innerHTML = 'Find';
+
+                            $('#trackModal').modal('show');
+
+                            //errorMessage
+                            errorMessage.textContent = ''; // Clear any previous error message
+                        } else {
+                            // Hide loading indicator
+                            findButton.disabled = false;
+                            findButton.innerHTML = 'Find';
+                            // Display the error message
+                            errorMessage.textContent = 'Tracking number not found!';
+                        }
                     }
                 });
-
-                // Hide loading indicator
+            }else{
+                // CAPTCHA verification failed
+                errorMessage.textContent = 'CAPTCHA verification failed. Please try again.';
+                errorMessage.style.color = 'red';
                 findButton.disabled = false;
                 findButton.innerHTML = 'Find';
-
-                $('#trackModal').modal('show');
-
-                //errorMessage
-                errorMessage.textContent = ''; // Clear any previous error message
-            } else {
-                // Hide loading indicator
-                findButton.disabled = false;
-                findButton.innerHTML = 'Find';
-                // Display the error message
-                errorMessage.textContent = 'Tracking number not found!';
+                grecaptcha.reset(); // Reset the CAPTCHA
+                return; // Stop form submission
             }
+        },
+        error: function () {
+            // Handle AJAX error
+            errorMessage.textContent = 'An error occurred while verifying CAPTCHA. Please try again.';
+            errorMessage.style.color = 'red';
+            findButton.disabled = false;
+            findButton.innerHTML = 'Find';
+            return; // Stop form submission
         }
     });
 });
