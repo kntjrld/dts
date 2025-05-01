@@ -235,7 +235,7 @@
                 } else {
                     $('#rejected_reason').parent().addClass('d-none');
                 }
-                $('#attached_link').html(record.attached_link == null ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
+                $('#attached_link').html(record.attached_link == '' ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
 
                 $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + record.document_title);
             });

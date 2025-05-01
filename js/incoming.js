@@ -5,7 +5,8 @@ $(document).ready(function () {
     // Handle "Receive" button click
     $('#btnReceive').click(function () {
         const trackingNumber = $('#modalTrackingNumber').text();
-        
+        const currentStatus = $('#modalStatus').text();
+
         // Show confirmation dialog
         Swal.fire({
             title: 'Are you sure?',
@@ -19,18 +20,30 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 const status = 'Received';
-                // change button text to "Processing..."
-                $('#btnReceive').html('Processing...');
-                // Insert tracking record
-                insert_tracking(trackingNumber, office, 'Document Received', 'Document Received');
+                if (currentStatus === 'Received') {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: "error",
+                        text: `Document with Tracking Number: ${trackingNumber} is already received.`,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    return; // Exit the function if already received
+                } else {
+                    // change button text to "Processing..."
+                    $('#btnReceive').html('Processing...');
+                    // Insert tracking record
+                    insert_tracking(trackingNumber, office, 'Document Received', 'Document Received');
 
-                updateStatus(trackingNumber, status, null);
+                    updateStatus(trackingNumber, status, null);
+                }
             }
         });
     });
 
     $('#btnReject').click(function () {
         const trackingNumber = $('#modalTrackingNumber').text();
+        const currentStatus = $('#modalStatus').text();
 
         // Hide the Bootstrap modal
         $('#detailsModal').modal('hide');
@@ -61,11 +74,22 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 const status = 'Rejected';
                 const reason = result.value; // Capture the input value
-                // Change button text to "Processing..."
-                $('#btnReject').html('Processing...');
-                // Insert tracking record
-                insert_tracking(trackingNumber, office, 'Document Rejected', reason);
-                updateStatus(trackingNumber, status, reason); // Pass the reason to the updateStatus function
+                if (currentStatus === 'Rejected') {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: "error",
+                        text: `Document with Tracking Number: ${trackingNumber} is already rejected.`,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    return; // Exit the function if already rejected
+                } else {
+                    // Change button text to "Processing..."
+                    $('#btnReject').html('Processing...');
+                    // Insert tracking record
+                    insert_tracking(trackingNumber, office, 'Document Rejected', reason);
+                    updateStatus(trackingNumber, status, reason); // Pass the reason to the updateStatus function
+                }
             }
 
             // Reopen the Bootstrap modal after SweetAlert2 is closed
@@ -164,10 +188,13 @@ $(document).ready(function () {
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        const status = 'Pending';
                         const destination = result.value; // Get the selected destination
                         forwardDocument(trackingNumber, destination);
                         // Insert tracking record
-                        insert_tracking(trackingNumber, office, 'Document Forwarded', `Forwarded to ${destination}`);
+                        insert_tracking(trackingNumber, office, 'Document Forwarded', `Forwarded to ${destination}, status back to Pending`);
+                        // Update status to Pending
+                        updateStatus(trackingNumber, status, null);
                     }
                 });
             }

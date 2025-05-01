@@ -29,6 +29,12 @@
     margin-top: 10px;
   }
 
+  #error_message{
+    color: red;
+    font-size: 11px;
+    margin-top: 5px;
+  }
+
   .content .form-field input,
   .content .form-field select {
     padding: 10px;

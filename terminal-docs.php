@@ -221,14 +221,6 @@
                 $('#modalStatus').text(record.status);
                 $('#modalOriginatingOffice').text(record.document_origin);
                 $('#modalDestinationOffice').text(record.document_destination);
-                $('#modalRemarks').text(record.remarks);
-
-                // modalRemarks display if not null
-                if (record.remarks == null || record.remarks == '') {
-                    $('#modalRemarks').parent().addClass('d-none');
-                } else {
-                    $('#modalRemarks').parent().removeClass('d-none');
-                }
 
                 $('#modalDocumentTitle').html('<i class="fa-solid fa-file-alt"></i> ' + record.document_title);
 
@@ -240,7 +232,7 @@
                 } else {
                     $('#rejected_reason').parent().addClass('d-none');
                 }
-                $('#attached_link').html(record.attached_link == null ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
+                $('#attached_link').html(record.attached_link == '' ? 'N/A' : '<a href="' + record.attached_link + '" target="_blank">' + record.attached_link + '</a>');
             });
 
             fetch_tracking(row.tracking_number, function(response) {

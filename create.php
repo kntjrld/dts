@@ -98,7 +98,8 @@
                         <label for="attached_link"><i class="fas fa-link"></i> Attached Link:</label>
                         <input type="url" id="attached_link" name="attached_link" placeholder="https://example.com">
                     </div>
-                    
+                    <!-- errorMessage -->
+                    <div class="error-message" id="error_message"></div>
                     <!-- Create and Reset Buttons -->
                     <div class="form-actions">
                         <button type="submit" id="create_button"><i class="fas fa-plus"></i> Create</button>
