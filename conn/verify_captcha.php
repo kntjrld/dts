@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $secretKey = '6LcsYyorAAAAAJL1pQjYMJPSnlELME7jrwejPUAE'; // Replace with your actual secret key
+    $secretKey = getenv('CAPTCHA_KEY'); // Replace with your actual secret key
     $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha");
     $responseKeys = json_decode($response, true);
 
