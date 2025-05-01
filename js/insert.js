@@ -30,7 +30,7 @@ $(document).ready(function () {
             deadlineInput.style.border = '2px solid red'; // Highlight the input box with a red border
 
             // Show error message
-            errorMessage.textContent = 'Invalid date, must be grater than current date.';
+            errorMessage.textContent = 'Invalid date, must be greater than current date.';
             errorMessage.style.color = 'red';
         } else {
             // Reset the border color if the date is valid
