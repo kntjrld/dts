@@ -7,7 +7,7 @@
     </div>
     <div class="user-settings" id="user-settings">
         <!-- Notification, UserName(icon) and dropdown icon -->
-        <i class="fa-solid fa-bell"></i>
+        <!-- <i class="fa-solid fa-bell"></i> -->
         <div class="tumbnail-display">
             <p id="dropdown"></p>
         </div>
