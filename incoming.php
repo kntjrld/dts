@@ -44,6 +44,9 @@
     <div class="content">
         <div class="container">
             <h3>Track Incoming Document</h3>
+            <div id="notificationBanner" class="alert alert-warning d-none" role="alert">
+                <i class="fa-solid fa-exclamation-circle"></i> We noticed that you have <span id="pendingCount"></span> pending documents that are past their deadline. Please check them out.
+            </div>
             <!-- Search Input -->
             <div class="search-container">
                 <!-- label -->
@@ -206,6 +209,7 @@
                     const filteredData = filterData();
                     displayTable(filteredData);
                     createPagination(filteredData);
+                    checkPendingNotifications(filteredData); // Check for pending notifications
                 },
                 error: function(error) {
                     console.error('Error fetching data:', error);
@@ -250,6 +254,20 @@
             // Show the modal
             $('#detailsModal').modal('show');
         }
+
+        // Function to check for pending documents with today's deadline or past deadlines
+        function checkPendingNotifications(data) {
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+            const pendingDocs = data.filter(row => row.status === 'Pending' && (row.deadline === today || new Date(row.deadline) < new Date(today)));
+
+            if (pendingDocs.length > 0) {
+                $('#pendingCount').text(pendingDocs.length); // Update the count in the notification banner
+                $('#notificationBanner').removeClass('d-none');
+            } else {
+                $('#notificationBanner').addClass('d-none');
+            }
+        }
+
         // Initial setup
         fetchData();
     </script>
