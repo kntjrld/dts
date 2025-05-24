@@ -435,3 +435,30 @@ a {
 #manageAccountModal .modal-body {
   padding: 20px;
 }
+
+/* Fix for side navigation spacing issue */
+@media (min-width: 768px) {
+  .side-nav {
+      top: 100px;
+  }
+}
+
+/* Fix for side navigation spacing issue for larger screens */
+@media (min-width: 912px) {
+  .side-nav {
+      top: 100px;
+  }
+}
+
+/* Fix for side navigation spacing issue for smaller screens */
+@media (max-width: 915px) and (min-width: 412px) {
+    .side-nav {
+      top: 100px;
+  }
+}
+/* Fix for side navigation spacing issue for smaller screens */
+@media (max-width: 844px) and (min-width: 390px) {
+    .side-nav {
+      top: 100px;
+  }
+}
