@@ -49,7 +49,7 @@
             <div class="dashboard">
                 <div class="dashboard-card">
                     <div class="dashboard-content">
-                        <span>1</span>
+                        <span>No data</span>
                         <h6>Incoming</h6>
                     </div>
                     <!-- graph icon -->
@@ -59,7 +59,7 @@
                 </div>
                 <div class="dashboard-card">
                     <div class="dashboard-content">
-                        <span>2</span>
+                        <span>No data</span>
                         <h6>Outgoing</h6>
                     </div>
                     <!-- graph icon -->
@@ -69,7 +69,7 @@
                 </div>
                 <div class="dashboard-card">
                     <div class="dashboard-content">
-                        <span>3</span>
+                        <span>No data</span>
                         <h6>Terminal</h6>
                     </div>
                     <!-- graph icon -->
@@ -79,7 +79,7 @@
                 </div>
                 <div class="dashboard-card">
                     <div class="dashboard-content">
-                        <span>4</span>
+                        <span>No data</span>
                         <h6>Pending</h6>
                     </div>
                     <div class="dashboard-icon">

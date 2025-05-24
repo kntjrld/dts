@@ -115,7 +115,14 @@ function toggleNav() {
 
 // User fullname tumbnail for replace dropdown : Ex: Kent Abulag -> KA
 function getThumbnail(fullname) {
+    // var name = fullname.split(' ');
+    //if name has more than 2 parts, take the first two and has only one
     var name = fullname.split(' ');
+    if (name.length > 2) {
+        name = [name[0], name[1]]; // Take only the first two parts
+    }else{
+        name = [name[0], '']; // If only one part, use the first part and an empty string
+    }
     var thumbnail = name[0].charAt(0) + name[1].charAt(0);
     return thumbnail.toUpperCase();
 }
