@@ -1,7 +1,7 @@
 <?php
 require 'connection.php';
 session_start();
-ob_end_clean();
+ob_start(); // Start output buffering
 
 $database = $client->selectDatabase('dts_db');
 $collection = $database->selectCollection('documents');
@@ -270,5 +270,73 @@ if (isset($_POST['getAllCombineCounts'])) {
     // Output the combined counts
     header('Content-Type: application/json');
     echo json_encode($counts);
+}
+
+if (isset($_POST['getPendingCount'])) {
+    $document_origin = $_SESSION['office'];
+
+    // Fetch all documents for debugging
+    $allDocumentsCursor = $collection->find([]);
+    foreach ($allDocumentsCursor as $doc) {
+        error_log("All Document: " . json_encode($doc));
+    }
+
+    // Fetch documents matching document_destination for debugging
+    $rawDataCursor = $collection->find(['document_destination' => $document_origin]);
+    foreach ($rawDataCursor as $rawDocument) {
+        error_log("Raw Document: " . json_encode($rawDocument));
+    }
+
+    $pipeline = [
+        [
+            '$match' => [
+                'document_destination' => $document_origin, // Ensure filtering by destination
+                'status' => ['$in' => ['Pending', 'Received']] // Filter only relevant statuses
+            ]
+        ],
+        [
+            '$group' => [
+                '_id' => '$status',
+                'count' => ['$sum' => 1]
+            ]
+        ],
+        [
+            '$project' => [
+                'status' => '$_id',
+                'count' => 1,
+                '_id' => 0
+            ]
+        ]
+    ];
+
+    // Debugging: Log the pipeline for verification
+    error_log("Pipeline: " . json_encode($pipeline));
+
+    $cursor = $collection->aggregate($pipeline);
+
+    $counts = [
+        'pendingCount' => 0,
+        'completedCount' => 0
+    ];
+
+    foreach ($cursor as $document) {
+        // Debugging: Log each document in the cursor
+        error_log("Aggregated Document: " . json_encode($document));
+
+        if (isset($document['status']) && $document['status'] === 'Pending') {
+            $counts['pendingCount'] = $document['count'];
+        } elseif (isset($document['status']) && $document['status'] === 'Received') {
+            $counts['completedCount'] = $document['count'];
+        }
+    }
+
+    // Debugging: Log the final counts
+    error_log("Final Counts: " . json_encode($counts));
+
+    // Clear any previous output and send JSON response
+    ob_end_clean();
+    header('Content-Type: application/json');
+    echo json_encode($counts);
+    exit;
 }
 ?>

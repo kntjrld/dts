@@ -77,14 +77,24 @@
                         <img src="media/bar2.png" class="terminal_bar">
                     </div>
                 </div>
-                <!-- dropdown by month year -->
-                <div class="dropdown">
-                    <!-- select -->
-                    <select id="monthYearSelect" class="form-control">
-                        <option value="all">All</option>
-                        <!-- dynamic month year -->
-                    </select>
+                <div class="dashboard-card">
+                    <div class="dashboard-content">
+                        <span>4</span>
+                        <h6>Pending</h6>
+                    </div>
+                    <div class="dashboard-icon">
+                        <!-- circular graph -->
+                        <canvas id="pendingCircleGraph"></canvas>
+                    </div>
                 </div>
+            </div>
+            <!-- dropdown by month year -->
+            <div class="dropdown">
+                <!-- select -->
+                <select id="monthYearSelect" class="form-control">
+                    <option value="all">All</option>
+                    <!-- dynamic month year -->
+                </select>
             </div>
             <!-- Chart Section -->
             <div class="chart-container">
@@ -101,6 +111,7 @@
     <script src="js/chart.js"></script>
     <!-- default -->
     <script src="js/default.js"></script>
+    <script src="js/pendingCircleGraph.js"></script>
 </body>
 
 </html>

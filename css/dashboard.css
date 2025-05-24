@@ -72,8 +72,19 @@
 }
 
 .dropdown {
-  align-self: self-end;
-  margin-left: auto;
+  width: 100px;
+  margin-top: 10px;
+  margin-left: auto; /* Align to the right */
+  margin-right: 0; /* Ensure no extra margin on the right */
+  display: flex;
+  justify-content: flex-end; /* Align content to the right */
+}
+
+
+#pendingCircleGraph{
+  width: 50px !important;
+  height: 50px !important;
+  align-self: flex-end;
 }
 
 /* Responsive Design */
