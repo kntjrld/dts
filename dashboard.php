@@ -1,3 +1,7 @@
+<?php
+session_start();
+$sessionOffice = $_SESSION['office'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,16 +71,18 @@
                         <img src="media/bar2.png" class="outgoing_bar">
                     </div>
                 </div>
-                <div class="dashboard-card">
-                    <div class="dashboard-content">
-                        <span>No data</span>
-                        <h6>Terminal</h6>
+                <?php if ($sessionOffice === 'Records Section'): ?>
+                    <div class="dashboard-card">
+                        <div class="dashboard-content">
+                            <span>No data</span>
+                            <h6>Terminal</h6>
+                        </div>
+                        <!-- graph icon -->
+                        <div class="dashboard-icon">
+                            <img src="media/bar2.png" class="terminal_bar">
+                        </div>
                     </div>
-                    <!-- graph icon -->
-                    <div class="dashboard-icon">
-                        <img src="media/bar2.png" class="terminal_bar">
-                    </div>
-                </div>
+                <?php endif; ?>
                 <div class="dashboard-card">
                     <div class="dashboard-content">
                         <span>No data</span>
