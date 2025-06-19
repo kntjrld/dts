@@ -315,6 +315,7 @@ function populateTrackingTimeline(trackingHistory) {
                     <p><strong>Office:</strong> ${entry.office}</p>
                     <p><strong>Action:</strong> ${entry.action}</p>
                     <p><strong>Remarks:</strong> ${entry.remarks || 'N/A'}</p>
+                    <p><strong>Action Taken By:</strong> ${entry.user}</p>
                 </div>
             </div>
         `;

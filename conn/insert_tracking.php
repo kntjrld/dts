@@ -18,13 +18,15 @@ try {
         $action = $_POST['action'];
         $remarks = $_POST['remarks'];
         $date = date('Y-m-d H:i:s');
+        $user = $_SESSION['fullname'] ?? 'Unknown User'; // Fallback if session variable is not set
 
         $trackingData = [
             'tracking_number' => $tracking_number,
             'office' => $office,
             'action' => $action,
             'remarks' => $remarks,
-            'date' => $date
+            'date' => $date,
+            'user' => $user 
         ];
 
         $result = $collection->insertOne($trackingData);
